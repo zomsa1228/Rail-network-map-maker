@@ -43,35 +43,65 @@ button,input,select,textarea{font:inherit;color:inherit}
 button{cursor:pointer}
 :focus-visible{outline:3px solid var(--focus);outline-offset:2px}
 
-/* ---- top bar: the toolbar is drawn as a little route diagram ---- */
-.top{display:flex;align-items:center;gap:18px;padding:8px 14px;background:var(--panel);border-bottom:1px solid var(--rule);flex:none}
-.brand{margin:0;font:400 19px/1 "Sawarabi Gothic",var(--ui);letter-spacing:.06em;white-space:nowrap}
-.tools{min-width:0;overflow-x:auto;scrollbar-width:none;padding:4px 2px}
-.tools::-webkit-scrollbar{display:none}
-.tools-in{position:relative;display:flex;align-items:center;gap:20px;padding:0 22px;width:max-content}
-.tools-in::before{content:"";position:absolute;left:0;right:0;top:50%;height:10px;transform:translateY(-50%);background:var(--rail);border-radius:5px}
-.tool{position:relative;height:36px;padding:0 16px;border:3px solid var(--pill-ink);border-radius:999px;background:var(--pill);color:var(--pill-ink);white-space:nowrap;letter-spacing:.04em}
-.tool:hover{box-shadow:0 0 0 3px var(--rule)}
-.tool[aria-pressed="true"]{background:var(--hub);border-color:var(--hub);color:var(--hub-ink)}
-.acts{margin-left:auto;display:flex;align-items:center;gap:2px;flex-wrap:wrap;justify-content:flex-end}
-.ghost{height:32px;padding:0 10px;border:0;border-radius:8px;background:transparent;white-space:nowrap}
-.ghost:hover:not(:disabled){background:var(--rule)}
-.ghost:disabled{opacity:.38;cursor:default}
+/* ---- top bar: menu bar like an image editor ---- */
+.top{display:flex;align-items:center;gap:10px;padding:0 10px;height:40px;background:var(--panel);border-bottom:1px solid var(--rule);flex:none;position:relative;z-index:30}
+.brand{margin:0;font:400 17px/1 "Sawarabi Gothic",var(--ui);letter-spacing:.06em;white-space:nowrap;padding-right:6px}
+.menubar{display:flex;align-items:center;gap:2px;min-width:0;overflow-x:auto;scrollbar-width:none}
+.menubar::-webkit-scrollbar{display:none}
+.menubar button{height:30px;padding:0 12px;border:0;border-radius:6px;background:transparent;white-space:nowrap}
+.menubar button:hover,.menubar button[aria-expanded="true"]{background:var(--rule)}
+.projname{margin-left:auto;color:var(--ink3);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:34%}
+.menupop{position:fixed;z-index:80;min-width:236px;max-width:min(92vw,340px);padding:6px;border:1px solid var(--rule2);border-radius:10px;background:var(--panel);box-shadow:0 12px 32px rgba(0,0,0,.28)}
+.menupop button{display:flex;align-items:center;gap:8px;width:100%;height:34px;padding:0 10px;border:0;border-radius:6px;background:transparent;text-align:left;white-space:nowrap}
+.menupop button:hover:not(:disabled){background:var(--rule)}
+.menupop button:disabled{opacity:.4;cursor:default}
+.menupop .mk{width:1.1em;flex:none;text-align:center}
+.menupop .mt{flex:1}
+.menupop .mk2{color:var(--ink3);font-size:11px}
+.menupop hr{border:0;border-top:1px solid var(--rule);margin:5px 4px}
 .hubbtn{height:36px;margin-left:8px;padding:0 22px;border:0;border-radius:999px;background:var(--hub);color:var(--hub-ink);letter-spacing:.06em}
 .hubbtn:hover{opacity:.88}
+
+/* ---- tool buttons (creation palette on the canvas / operation toolbox) ---- */
+.tool{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;width:58px;height:54px;padding:2px;border:1.5px solid transparent;border-radius:10px;background:transparent;color:var(--ink);font-size:11px;line-height:1.1;white-space:nowrap;touch-action:manipulation}
+.tool svg,.cmd svg{width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.tool:hover{background:var(--rule)}
+.tool[aria-pressed="true"]{background:var(--hub);color:var(--hub-ink)}
+.palette{position:absolute;left:10px;top:10px;z-index:5;display:flex;flex-direction:column;gap:4px;padding:5px;border:1px solid var(--rule2);border-radius:14px;background:var(--panel);box-shadow:0 6px 18px rgba(0,0,0,.2)}
+.cmd{flex:1;min-width:0;height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;padding:0 2px;border:1.5px solid var(--rule2);border-radius:10px;background:var(--field);font-size:10.5px;line-height:1.1;white-space:nowrap;touch-action:manipulation}
+.cmd:hover:not(:disabled){border-color:var(--ink)}
+.cmd:disabled{opacity:.38;cursor:default}
+.cmd[aria-pressed="true"]{background:var(--hub);color:var(--hub-ink);border-color:var(--hub)}
+.cmd b{font-weight:600;font-size:15px;line-height:1}
 
 /* ---- workspace ---- */
 .main{flex:1;min-height:0;display:flex}
 .stage{position:relative;flex:1;min-width:0;min-height:0;background:var(--ws)}
 canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none;outline:none}
-.empty{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(340px,86%);text-align:center;color:var(--ink2);pointer-events:none}
-.empty p{margin:0 0 12px}
-.empty button{pointer-events:auto}
-.pillbtn{height:34px;padding:0 18px;border:3px solid var(--pill-ink);border-radius:999px;background:var(--pill);color:var(--pill-ink)}
-.pillbtn:hover{box-shadow:0 0 0 3px var(--rule)}
 
 /* ---- inspector ---- */
-.insp{width:308px;flex:none;background:var(--panel);border-left:1px solid var(--rule);overflow-y:auto;overscroll-behavior:contain}
+.side{width:312px;flex:none;display:flex;flex-direction:column;min-height:0;background:var(--panel);border-left:1px solid var(--rule)}
+.insp{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain}
+.tbx{flex:none;margin-top:auto;display:flex;flex-direction:column;gap:6px;padding:8px;border-top:1px solid var(--rule2);background:var(--panel)}
+.tbx-row{display:flex;gap:4px}
+.tbx .tool{flex:1;width:auto;min-width:0;height:50px;border-color:var(--rule2)}
+.tbx-lbl{margin:0 0 -2px 2px;font-size:10.5px;color:var(--ink3)}
+.bsec{padding:10px 0 12px;border-top:1px solid var(--rule)}
+.bsec:first-child{border-top:0;padding-top:0}
+.bsec h3{margin:0 0 8px;font-size:13px;font-weight:600}
+.bsec .chk{display:flex;margin:6px 0}
+.presets{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.help h3{margin:14px 0 4px;font-size:13px;font-weight:600}
+.help p,.help li{color:var(--ink2);margin:3px 0}
+.help ul{margin:0;padding-left:1.3em}
+.ktable{width:100%;border-collapse:collapse;font-size:12.5px}
+.ktable td{padding:4px 6px;border-top:1px solid var(--rule)}
+.ktable td:last-child{text-align:right;color:var(--ink2);white-space:nowrap}
+.hide-left .palette{display:none}
+.hide-right .insp{display:none}
+.hide-toolbox .tbx{display:none}
+.hide-right.hide-toolbox .side{display:none}
+.hide-status .bar{display:none}
 .sec{padding:12px 14px 14px;border-bottom:1px solid var(--rule)}
 .sec h2{margin:0 0 8px;font-size:13px;font-weight:600;letter-spacing:.03em}
 .how{margin:0;padding-left:1.3em;color:var(--ink2)}
@@ -124,9 +154,6 @@ textarea{height:220px;padding:8px 9px;font:12px/1.5 ui-monospace,SFMono-Regular,
 .hint{flex:1 1 300px;min-width:0}
 .opts{display:flex;align-items:center;gap:8px}
 .lbl{color:var(--ink2)}
-.zoom{display:flex;align-items:center;gap:2px}
-.zoom button{height:26px;min-width:28px;padding:0 6px;border:0;border-radius:6px;background:transparent}
-.zoom button:hover{background:var(--rule)}
 .coord{min-width:96px;text-align:right;color:var(--ink3);font-variant-numeric:tabular-nums}
 
 /* ---- dialogs / toast ---- */
@@ -157,12 +184,16 @@ dialog::backdrop{background:rgba(18,18,20,.5)}
 @media (prefers-reduced-motion:reduce){.toast{transition:none}}
 
 @media (max-width:860px){
-  .top{flex-wrap:wrap;gap:8px 12px}
-  .tools{order:3;flex:1 1 100%}
-  .acts{flex-wrap:nowrap;overflow-x:auto;max-width:100%;scrollbar-width:none;justify-content:flex-start}
-  .acts::-webkit-scrollbar{display:none}
+  .top{gap:6px}
+  .brand{font-size:15px}
+  .projname{display:none}
   .main{flex-direction:column}
-  .insp{width:auto;max-height:42%;border-left:0;border-top:1px solid var(--rule)}
+  .side{width:auto;max-height:54%;border-left:0;border-top:1px solid var(--rule)}
+  .palette{flex-direction:row;left:8px;top:8px}
+  .palette .tool{width:52px;height:50px}
+  .tbx{gap:4px;padding:6px}
+  .tbx .tool{height:44px}
+  .cmd{height:38px}
   .coord{display:none}
   .bar{gap:6px 10px;padding:6px 10px}
   .hint{flex-basis:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -173,49 +204,57 @@ dialog::backdrop{background:rgba(18,18,20,.5)}
 
 <header class="top">
   <h1 class="brand">路線図メーカー</h1>
-  <div class="tools" role="toolbar" aria-label="ツール">
-    <div class="tools-in">
-      <button class="tool" type="button" data-tool="select" aria-pressed="true" title="選択・移動 (V)">選択</button>
-      <button class="tool" type="button" data-tool="marquee" aria-pressed="false" title="ドラッグで範囲選択 (M)">範囲選択</button>
-      <button class="tool" type="button" data-tool="erase" aria-pressed="false" title="クリックで削除 (E)">削除</button>
-      <button class="tool" type="button" data-tool="line" aria-pressed="false" title="路線を引く (L)">路線</button>
-      <button class="tool" type="button" data-tool="station" aria-pressed="false" title="駅を置く (S)">駅</button>
-      <button class="tool" type="button" data-tool="hub" aria-pressed="false" title="ハブ駅の名前札を置く (H)">ハブ駅</button>
-      <button class="tool" type="button" data-tool="text" aria-pressed="false" title="文字を置く (T)">文字</button>
-      <button class="tool" type="button" data-tool="pan" aria-pressed="false" title="表示を移動 (スペースを押しながらドラッグ)">移動</button>
-    </div>
-  </div>
-  <div class="acts">
-    <button class="ghost" type="button" id="btnUndo" title="元に戻す (Ctrl+Z)">元に戻す</button>
-    <button class="ghost" type="button" id="btnRedo" title="やり直す (Ctrl+Shift+Z)">やり直す</button>
-    <button class="ghost" type="button" id="btnSample">サンプル</button>
-    <button class="ghost" type="button" id="btnNew">白紙</button>
-    <button class="ghost" type="button" id="btnTable">表から生成</button>
-    <button class="ghost" type="button" id="btnData">保存・読込</button>
-    <button class="hubbtn" type="button" id="btnExport">書き出し</button>
-  </div>
+  <nav class="menubar" id="menubar" aria-label="メニュー"></nav>
+  <span class="projname" id="projName"></span>
 </header>
 
 <main class="main">
   <section class="stage" id="stage">
     <canvas id="cv" role="img" aria-label="路線図の編集エリア"></canvas>
-    <div class="empty" id="empty" hidden>
-      <p>「路線」で線を引き、「駅」で線の近くをクリックすると駅が置けます。</p>
-      <button class="pillbtn" type="button" id="btnSample2">サンプルを開く</button>
+    <div class="palette" id="palette" role="toolbar" aria-label="作成ツール">
+      <button class="tool" type="button" data-tool="line" aria-pressed="false" title="路線を引く (L)"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="18" r="1.8"/><circle cx="19" cy="6" r="1.8"/><path d="M6.4 16.6L11 10l4 5 2.6-7.6"/></svg><span>路線</span></button>
+      <button class="tool" type="button" data-tool="station" aria-pressed="false" title="駅を置く (S)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8.5" y="3.5" width="7" height="17" rx="3.5"/></svg><span>駅</span></button>
+      <button class="tool" type="button" data-tool="hub" aria-pressed="false" title="ハブ駅を置く (H)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="4.5" width="15" height="15" rx="6" fill="currentColor"/></svg><span>ハブ駅</span></button>
+      <button class="tool" type="button" data-tool="text" aria-pressed="false" title="文字を置く (T)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6.5h14M12 6.5v12M9 18.5h6"/></svg><span>文字</span></button>
     </div>
   </section>
-  <aside class="insp" id="insp" aria-label="プロパティ"></aside>
+  <aside class="side" id="side">
+    <div class="insp" id="insp" aria-label="オプション"></div>
+    <div class="tbx" id="toolbox" role="toolbar" aria-label="操作ツールボックス">
+      <div class="tbx-row">
+        <button class="tool" type="button" data-tool="select" aria-pressed="true" title="選択・移動 (V)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5l11 7.5-5 1.2 3 5.8-2.6 1.3-3-5.8L6 17.5z"/></svg><span>選択</span></button>
+        <button class="tool" type="button" data-tool="marquee" aria-pressed="false" title="ドラッグで範囲選択 (M)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="1.5" stroke-dasharray="3 2.6"/></svg><span>範囲選択</span></button>
+        <button class="tool" type="button" data-tool="erase" aria-pressed="false" title="クリックで削除 (E)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 5l5.5 5.5-8 8H7.5L4 15.5z"/><path d="M10 9l5.5 5.5"/><path d="M12.5 20.5H20"/></svg><span>削除</span></button>
+        <button class="tool" type="button" data-tool="pan" aria-pressed="false" title="表示を移動（Space+ドラッグ）"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M3 12h18"/><path d="M9 6l3-3 3 3M9 18l3 3 3-3M6 9l-3 3 3 3M18 9l3 3-3 3"/></svg><span>移動</span></button>
+      </div>
+      <div class="tbx-row">
+        <button class="cmd" type="button" data-cmd="undo" title="元に戻す (Ctrl+Z)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7L4 12l5 5"/><path d="M4 12h9.5a5 5 0 010 10H11"/></svg><span>元に戻す</span></button>
+        <button class="cmd" type="button" data-cmd="redo" title="やり直し (Ctrl+Shift+Z)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 7l5 5-5 5"/><path d="M20 12h-9.5a5 5 0 000 10H13"/></svg><span>やり直し</span></button>
+        <button class="cmd" type="button" data-cmd="dup" title="選択を複製 (Ctrl+D)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8.5" y="8.5" width="11" height="11" rx="2"/><path d="M15.5 8.5V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7.5a2 2 0 002 2h2.5"/></svg><span>複製</span></button>
+        <button class="cmd" type="button" data-cmd="del" title="選択を削除 (Delete)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14M10 7V4.5h4V7M7 7l.8 12.5h8.4L17 7"/></svg><span>選択削除</span></button>
+        <button class="cmd" type="button" data-cmd="selall" title="すべて選択 (Ctrl+A)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2" stroke-dasharray="3 2.6"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg><span>全選択</span></button>
+      </div>
+      <div class="tbx-row">
+        <button class="cmd" type="button" data-cmd="zout" title="縮小 (-)"><b>−</b><span>縮小</span></button>
+        <button class="cmd" type="button" data-cmd="fit" title="全体を表示 (0)"><b id="zPct">100%</b><span>全体</span></button>
+        <button class="cmd" type="button" data-cmd="zin" title="拡大 (+)"><b>＋</b><span>拡大</span></button>
+        <button class="cmd" type="button" data-cmd="z100" title="表示を100%にする"><b>1:1</b><span>等倍</span></button>
+      </div>
+      <div class="tbx-row">
+        <button class="cmd" type="button" data-cmd="nudge:l" title="選択を左へ（矢印キー）"><b>←</b><span>左</span></button>
+        <button class="cmd" type="button" data-cmd="nudge:u" title="選択を上へ（矢印キー）"><b>↑</b><span>上</span></button>
+        <button class="cmd" type="button" data-cmd="nudge:d" title="選択を下へ（矢印キー）"><b>↓</b><span>下</span></button>
+        <button class="cmd" type="button" data-cmd="nudge:r" title="選択を右へ（矢印キー）"><b>→</b><span>右</span></button>
+        <button class="cmd" type="button" data-cmd="mod:shift" title="Shiftを押している状態にする（追加選択・自由な角度・矢印を大きく）"><b>⇧</b><span>Shift</span></button>
+        <button class="cmd" type="button" data-cmd="mod:alt" title="Altを押している状態にする（吸着を一時的に外す）"><b>⌥</b><span>Alt</span></button>
+      </div>
+    </div>
+  </aside>
 </main>
 
-<footer class="bar">
+<footer class="bar" id="statusbar">
   <div class="hint" id="hint"></div>
   <div class="opts" id="toolopts"></div>
-  <label class="chk"><input type="checkbox" id="optSnap" checked> 吸着</label>
-  <div class="zoom">
-    <button type="button" id="zOut" aria-label="縮小">−</button>
-    <button type="button" id="zFit" title="全体を表示 (0)"><span id="zPct">100%</span></button>
-    <button type="button" id="zIn" aria-label="拡大">＋</button>
-  </div>
   <div class="coord" id="coord" aria-hidden="true"></div>
 </footer>
 
@@ -226,7 +265,7 @@ dialog::backdrop{background:rgba(18,18,20,.5)}
       <div class="fld"><span>形式</span><div class="seg" id="segFmt" role="group"><button type="button" data-fmt="png" aria-pressed="true">PNG</button><button type="button" data-fmt="svg" aria-pressed="false">SVG</button></div></div>
       <div class="fld" id="fldScale"><span>倍率</span><div class="seg" id="segScale" role="group"><button type="button" data-scale="1" aria-pressed="false">1×</button><button type="button" data-scale="2" aria-pressed="true">2×</button><button type="button" data-scale="3" aria-pressed="false">3×</button><button type="button" data-scale="4" aria-pressed="false">4×</button></div></div>
       <div class="fld"><span>余白 (px)</span><input type="number" id="expMargin" min="0" max="400" step="1"></div>
-      <div class="fld"><span>背景</span><div class="inline"><input type="color" id="expBg" aria-label="背景色"><label class="chk"><input type="checkbox" id="expTransp"> 透明</label></div></div>
+      <div class="fld"><span>背景</span><div class="inline"><input type="color" id="expBg" aria-label="背景色"><label class="chk"><input type="checkbox" id="expTransp"> 透明</label></div><div id="expBgSw"></div></div>
     </div>
     <div class="pv"><img id="expImg" alt="書き出しプレビュー"></div>
     <p id="expInfo"></p>
@@ -280,8 +319,8 @@ dialog::backdrop{background:rgba(18,18,20,.5)}
 
 <dialog id="dlgData">
   <div class="dlg">
-    <h2>保存・読込</h2>
-    <p>作業内容はこのブラウザに自動で保存されています。別の場所へ移すときは、JSONとして保存し、読み込んでください。</p>
+    <h2>テキストで読込・コピー</h2>
+    <p>作業内容はこのブラウザに自動で保存されています。JSONの文章をコピーしたり、貼り付けて読み込んだりできます。</p>
     <textarea id="dataText" spellcheck="false" aria-label="プロジェクトのJSON"></textarea>
     <div class="dlg-actions">
       <button class="mini" type="button" id="dataFile">ファイルから読み込む</button>
@@ -293,6 +332,76 @@ dialog::backdrop{background:rgba(18,18,20,.5)}
     <input type="file" id="dataPick" accept=".json,application/json" hidden>
   </div>
 </dialog>
+
+<dialog id="dlgBoard">
+  <div class="dlg">
+    <h2>ボード設定</h2>
+    <div id="boardBody"></div>
+    <div class="dlg-actions">
+      <button class="mini" type="button" id="boardReset">フォーマットを初期値に戻す</button>
+      <button class="hubbtn" type="button" id="boardClose">閉じる</button>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="dlgSaveAs">
+  <div class="dlg">
+    <h2>別名で保存</h2>
+    <label class="fld"><span>ファイル名（.json は自動で付きます）</span><input type="text" id="saName" autocomplete="off" spellcheck="false"></label>
+    <div class="dlg-actions">
+      <button class="mini" type="button" id="saCancel">キャンセル</button>
+      <button class="hubbtn" type="button" id="saGo">保存</button>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="dlgHelp">
+  <div class="dlg help">
+    <h2>使い方</h2>
+    <h3>つくる</h3>
+    <ul>
+      <li>左の「路線」でクリックして点を置き、ダブルクリックかEnterで確定します。45°刻みに揃い、既存の線・駅・レーン位置に吸い付きます。</li>
+      <li>「駅」は線の近くをクリック。隣の駅とは自動で間隔をあけて揃います。「ハブ駅」は縦横のレーン数を決めて、線が交わる所に置きます。「文字」は自由な文字を置きます。</li>
+      <li>既存の路線の端から線を引き始めると、延伸するか新しい路線にするかを選べます。</li>
+    </ul>
+    <h3>えらぶ・うごかす</h3>
+    <ul>
+      <li>線をクリックすると「点と点の間（区間）」、折れ点をクリックすると「点」を選べます。区間では実線／点線と、他の路線との交差（橋・弧）を選べます。「路線全体を選択」で路線ごと動かせます。</li>
+      <li>右下のツールボックスに、選択・範囲選択・削除・移動と、元に戻す・やり直し・複製・全選択・拡大縮小・矢印移動があります（タッチ向け）。ShiftやAltのボタンで、キーを押している状態にできます。</li>
+    </ul>
+    <h3>駅番号</h3>
+    <ul><li>駅を選ぶと、通っている路線ごとに駅番号（文字）を入力できます。路線の色の枠（円か四角）で駅名の左に表示します。</li></ul>
+    <h3>ファイル</h3>
+    <ul>
+      <li>作業内容はこのブラウザに自動保存されます。「ファイル」から保存（JSON）・別名保存・開く・出力（PNG/SVG）ができます。</li>
+      <li>「設定 → ボード設定」で、台紙サイズ・全体サイズ・吸着・グリッド表示・ガイド表示・背景色を変えられます。</li>
+    </ul>
+    <div class="dlg-actions"><button class="hubbtn" type="button" data-close="dlgHelp">閉じる</button></div>
+  </div>
+</dialog>
+
+<dialog id="dlgKeys">
+  <div class="dlg">
+    <h2>ショートカットキー</h2>
+    <table class="ktable">
+      <tr><td>選択 / 範囲選択 / 削除ツール</td><td>V / M / E</td></tr>
+      <tr><td>路線 / 駅 / ハブ駅 / 文字</td><td>L / S / H / T</td></tr>
+      <tr><td>表示を移動</td><td>Space+ドラッグ</td></tr>
+      <tr><td>拡大 / 縮小 / 全体表示</td><td>+ / - / 0（Ctrl+ホイールも可）</td></tr>
+      <tr><td>元に戻す / やり直し</td><td>Ctrl+Z / Ctrl+Shift+Z</td></tr>
+      <tr><td>複製 / 全選択</td><td>Ctrl+D / Ctrl+A</td></tr>
+      <tr><td>選択を削除</td><td>Delete / Backspace</td></tr>
+      <tr><td>選択を1px動かす（Shiftでグリッド幅）</td><td>矢印キー</td></tr>
+      <tr><td>保存</td><td>Ctrl+S</td></tr>
+      <tr><td>線を確定 / 1点戻す / 中止</td><td>Enter / Backspace / Esc</td></tr>
+      <tr><td>吸着を一時的に外す</td><td>Alt</td></tr>
+      <tr><td>追加選択 / 自由な角度 / 追加選択の解除</td><td>Shift</td></tr>
+    </table>
+    <div class="dlg-actions"><button class="hubbtn" type="button" data-close="dlgKeys">閉じる</button></div>
+  </div>
+</dialog>
+
+<input type="file" id="openPick" accept=".json,application/json" hidden>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -821,6 +930,19 @@ function lineNameSpots(st){
         if(d<clear+30&&d<bestD){bestD=d;bestT=sg.start+t;}
       }
       if(bestT!=null)blocked.push([Math.max(0,bestT-clear-8),Math.min(total,bestT+clear+8)]);
+    }
+    // 他の路線と交わる所（交点・合流点）にも路線名は置かない
+    for(const sg of segs2){
+      for(const o of ls){
+        if(o.L===L)continue;
+        const den=sg.ux*o.uy-sg.uy*o.ux;
+        if(Math.abs(den)<1e-6)continue;
+        const dx=o.ax-sg.a[0],dy=o.ay-sg.a[1];
+        const t=(dx*o.uy-dy*o.ux)/den,e=(dx*sg.uy-dy*sg.ux)/den;
+        if(t<-1||t>sg.len+1||e<-1||e>o.len+1)continue;
+        const w=(o.L.width!=null?o.L.width:S.lineWidth)/2+6,c=sg.start+clamp(t,0,sg.len);
+        blocked.push([Math.max(0,c-w),Math.min(total,c+w)]);
+      }
     }
     const mid=total/2;
     let bestSpot=null,bestDist=Infinity;
@@ -1407,8 +1529,8 @@ function loadJSON(js,keepSel){
 function undo(){if(hist.i>0){hist.i--;lastKey=null;loadJSON(hist.s[hist.i],true);lsSet(LS_KEY,snapshot());updateUndo();}}
 function redo(){if(hist.i<hist.s.length-1){hist.i++;lastKey=null;loadJSON(hist.s[hist.i],true);lsSet(LS_KEY,snapshot());updateUndo();}}
 function updateUndo(){
-  $('#btnUndo').disabled=hist.i<=0;
-  $('#btnRedo').disabled=hist.i>=hist.s.length-1;
+  $$('[data-cmd="undo"]').forEach(b=>{b.disabled=hist.i<=0;});
+  $$('[data-cmd="redo"]').forEach(b=>{b.disabled=hist.i>=hist.s.length-1;});
 }
 function savePrefs(){lsSet(LS_PREF,JSON.stringify({scale:prefs.scale,fmt:prefs.fmt,lanes:prefs.lanes,align:prefs.align,manualLanes:prefs.manualLanes,hubX:prefs.hubX,hubY:prefs.hubY,showGrid:prefs.showGrid,showGuides:prefs.showGuides,theme:prefs.theme,view:prefs.view,snap:snapOn}));}
 
@@ -1559,7 +1681,6 @@ function render(){
     ctx.restore();
   }
   drawPreview();
-  $('#empty').hidden=!!(state.lines.length||state.stations.length||state.texts.length||drawing||tool==='line'&&false);
   $('#zPct').textContent=Math.round(view.k*100)+'%';
 }
 
@@ -1917,7 +2038,7 @@ function onMove(e){
         if(snapOn&&!e.shiftKey){const r=laneSnapPoint([x,y],8/view.k);if(r){x=r[0];y=r[1];}}
         L.pts[i]=[x,y];
       });
-      setGuides([L.pts[i]],{v:new Set([L.id+':'+i])});
+      setGuides([L.pts[i]],{v:new Set([L.id+':'+i,L.id+':'+(i-1),L.id+':'+(i+1)])});
       syncFields();requestRender();return;
     }
     if(drag.type==='seg'){
@@ -1946,7 +2067,7 @@ function onMove(e){
         }
       });
       L.pts[i]=[a0[0]+dx,a0[1]+dy];L.pts[i+1]=[b0[0]+dx,b0[1]+dy];
-      setGuides([L.pts[i],L.pts[i+1]],{v:new Set([L.id+':'+i,L.id+':'+(i+1)])});
+      setGuides([L.pts[i],L.pts[i+1]],{v:new Set([L.id+':'+(i-1),L.id+':'+i,L.id+':'+(i+1),L.id+':'+(i+2)])});
       syncFields();requestRender();return;
     }
     if(drag.type==='move'){
@@ -2215,12 +2336,7 @@ function colorField(path,label,val){
 }
 function settingsHTML(){
   const S=state.s;
-  let h='<section class="sec" style="border-bottom:0;padding-bottom:6px"><h2>フォーマット</h2><p class="note" style="margin:0">添付いただいた仕様の数値が初期値です。サイズは全体の比率を保ったまま、色は自由に変えられます。</p></section>';
-  h+=grp('canvas','台紙サイズ',inChk('S.canvasFixed',S.canvasFixed,'サイズを固定する')
-    +(S.canvasFixed
-      ?'<div class="g2">'+fld('幅',inNum('S.canvasW',S.canvasW,{min:10}))+fld('高さ',inNum('S.canvasH',S.canvasH,{min:10}))+'</div><p class="note">この範囲の外は書き出しで切れます。</p>'
-      :'<p class="note" style="margin-top:8px">内容に合わせて自動的に決まります。</p>'));
-  h+=grp('scale','全体サイズ','<div class="row" style="grid-template-columns:96px 1fr"><label>サイズ (%)</label>'+inNum('S.scale',Math.round(S.scale*100),{min:20,max:500,step:5})+'</div><p class="note">線の太さや駅・ラベルの大きさを比率そのままに拡大縮小します。</p><div class="fonts"><span>英語</span><b style="font-family:Sen,sans-serif">Sen</b><span>日本語</span><b style="font-family:\'Sawarabi Gothic\',sans-serif">Sawarabi Gothic</b></div>');
+  let h='<section class="sec" style="border-bottom:0;padding-bottom:6px"><h2>スタイル</h2><p class="note" style="margin:0">全体の色などです。台紙サイズ・吸着・ガイドは「設定 → ボード設定」にあります。</p></section>';
   h+=grp('colors','色',
     colorField('S.lineColor','路線の色',S.lineColor)
     +colorField('S.stInk','駅の線色',S.stInk)
@@ -2228,17 +2344,14 @@ function settingsHTML(){
     +colorField('S.labelColor','ラベル文字色',S.labelColor)
     +colorField('S.hubColor','ハブ駅の色',S.hubColor)
     +colorField('S.hubText','ハブ駅の文字色',S.hubText));
-  h+=grp('num','駅番号','<div class="row"><label>形</label>'+inSeg('S.numShape',[['circle','円'],['square','四角']],S.numShape)+'</div><p class="note" style="margin-top:8px">駅ごとの「駅番号」欄に入力すると、駅名の左にその路線の色で表示されます。</p>');
-  h+=grp('snap','吸着','<div class="row" style="grid-template-columns:96px 1fr"><label>グリッド (px)</label><select data-a="S.grid" data-t="n">'+[1,2.5,5,10,20].map(v=>'<option value="'+v+'"'+(S.grid===v?' selected':'')+'>'+v+'</option>').join('')+'</select></div>');
-  h+='<section class="sec"><button type="button" class="mini" data-act="resetfmt">フォーマットを初期値に戻す</button></section>';
-  h+=grp('keys','ショートカット','<ul class="keys"><li>選択 / 範囲選択 / 削除 / 路線 / 駅 / ハブ / 文字<span><kbd>V</kbd> <kbd>M</kbd> <kbd>E</kbd> <kbd>L</kbd> <kbd>S</kbd> <kbd>H</kbd> <kbd>T</kbd></span></li><li>表示を移動<span><kbd>Space</kbd>+ドラッグ</span></li><li>拡大縮小<span><kbd>Ctrl</kbd>+ホイール</span></li><li>全体を表示<span><kbd>0</kbd></span></li><li>元に戻す / やり直す<span><kbd>Ctrl</kbd>+<kbd>Z</kbd> / <kbd>Shift</kbd></span></li><li>複製 / 全選択<span><kbd>Ctrl</kbd>+<kbd>D</kbd> / <kbd>A</kbd></span></li><li>1px / グリッド分ずらす<span><kbd>矢印</kbd> / <kbd>Shift</kbd>+矢印</span></li><li>吸着を外す<span><kbd>Alt</kbd></span></li></ul>');
+  h+=grp('num','駅番号の枠（既定）','<div class="row"><label>形</label>'+inSeg('S.numShape',[['circle','円'],['square','四角']],S.numShape)+'</div><p class="note" style="margin-top:8px">駅番号は駅ごと・路線ごとに入力します。枠は路線の色で、路線ごとに形を変えることもできます。</p>');
   return h;
 }
 function renderInspector(){
   const items=[...sel].map(getObj).filter(Boolean);
   let h='';
   if(!items.length){
-    h='<section class="sec"><h2>使い方</h2><ol class="how"><li>「路線」で線を引く（クリックで点、ダブルクリックで確定）</li><li>「駅」で線の近くをクリック。名前を入力</li><li>「書き出し」でPNGかSVGにする</li></ol></section>';
+    h='<section class="sec"><h2>オプション</h2><p class="note" style="margin-top:0">路線・駅・文字を選ぶと、ここで細かい設定ができます。使い方は「ヘルプ」から開けます。</p></section>';
   }else if(items.length>1){
     h='<section class="sec"><h2>'+items.length+'個を選択中</h2><p class="note" style="margin-top:0">ドラッグでまとめて移動できます。</p>'+selActions()+'</section>';
   }else{
@@ -2392,6 +2505,7 @@ document.addEventListener('keydown',e=>{
   if(mod&&lk==='y'){e.preventDefault();redo();return;}
   if(mod&&lk==='d'){e.preventDefault();duplicateSel();return;}
   if(mod&&lk==='a'){e.preventDefault();selectAll();return;}
+  if(mod&&lk==='s'){e.preventDefault();saveProject();return;}
   if(mod)return;
   const onBtn=t&&t.tagName==='BUTTON';
   if(key==='Delete'||key==='Backspace'){
@@ -2475,6 +2589,7 @@ function refreshExport(){
   $('#expBg').value=/^#[0-9a-f]{6}$/i.test(state.s.bg)?state.s.bg:'#ffffff';
   $('#expTransp').checked=!!state.s.transparent;
   $('#expBg').disabled=!!state.s.transparent;
+  $('#expBgSw').innerHTML=swatchRows(state.s.bg,c=>'data-bgsw="'+c+'"');
   const img=$('#expImg');
   const r=exportCanvas(Math.min(prefs.fmt==='svg'?2:prefs.scale,2));
   if(r){try{img.src=r.canvas.toDataURL('image/png');}catch(_){}}
@@ -2490,6 +2605,7 @@ $('#segScale').addEventListener('click',e=>{const b=e.target.closest('button');i
 $('#expMargin').addEventListener('input',e=>{const v=parseFloat(e.target.value);if(Number.isFinite(v)){state.s.margin=clamp(v,0,400);commit('margin');refreshExport();}});
 $('#expBg').addEventListener('input',e=>{state.s.bg=e.target.value;commit('bg');refreshExport();});
 $('#expTransp').addEventListener('change',e=>{state.s.transparent=e.target.checked;commit('transp');refreshExport();});
+$('#expBgSw').addEventListener('click',e=>{const b=e.target.closest('button[data-bgsw]');if(!b)return;state.s.bg=b.dataset.bgsw;state.s.transparent=false;commit('bg');refreshExport();});
 $('#expClose').addEventListener('click',()=>hideDlg(dlgE));
 $('#btnSave').addEventListener('click',async()=>{
   if(prefs.fmt==='svg'){
@@ -2514,13 +2630,12 @@ $('#btnCopySvg').addEventListener('click',async()=>{
 
 const dlgD=$('#dlgData'),dataText=$('#dataText');
 function openData(){dataText.value=JSON.stringify(state,null,1);showDlg(dlgD);}
-$('#btnData').addEventListener('click',openData);
 $('#dataClose').addEventListener('click',()=>hideDlg(dlgD));
 $('#dataCopy').addEventListener('click',async()=>{
   try{await navigator.clipboard.writeText(dataText.value);toast('コピーしました');}
   catch(_){dataText.focus();dataText.select();toast('選択しました。Ctrl+Cでコピーしてください');}
 });
-$('#dataSave').addEventListener('click',()=>saveBlob('rosenzu-project.json',new Blob([dataText.value],{type:'application/json'})));
+$('#dataSave').addEventListener('click',()=>saveBlob(projFile(),new Blob([dataText.value],{type:'application/json'})));
 function importText(txt){
   let ok=false;
   try{const o=JSON.parse(txt);ok=!!o&&typeof o==='object'&&(Array.isArray(o.lines)||Array.isArray(o.stations)||Array.isArray(o.texts));}catch(_){ok=false;}
@@ -2551,7 +2666,6 @@ function renderTableRows(){
   )).join(''):'<p class="note" style="margin:0">まだ行がありません。「行を追加」から入力してください。</p>';
 }
 function openTable(){renderTableRows();showDlg(dlgT);}
-$('#btnTable').addEventListener('click',openTable);
 $('#tblClose').addEventListener('click',()=>hideDlg(dlgT));
 $('#tblAddRow').addEventListener('click',()=>{
   const last=state.table[state.table.length-1];
@@ -2585,7 +2699,7 @@ function generateFromTable(dir){
   const S=state.s,hubHalf=S.stH/2;
   const existingByName=new Map();
   for(const s of state.stations)if(s.text&&s.text.trim()&&!existingByName.has(s.text.trim()))existingByName.set(s.text.trim(),s);
-  const curB=bounds(build(),S);
+  const curB=bounds(build(),Object.assign({},S,{canvasFixed:false})); // 台紙ではなく、いまある内容の範囲
   const toXY=(along,cross)=>dir==='h'?[along,cross]:[cross,along];
   let laneCross=curB?Math.ceil((dir==='h'?(curB.y+curB.h+70):(curB.x+curB.w+70))/10)*10:100;
   const startAlong=curB?Math.round((dir==='h'?curB.x:curB.y)/10)*10:60;
@@ -2617,7 +2731,7 @@ function generateFromTable(dir){
     const uniq=pts.filter((p,i)=>i===0||p[0]!==pts[i-1][0]||p[1]!==pts[i-1][1]);
     if(uniq.length>=2){
       const lineId=nid();
-      state.lines.push({id:lineId,pts:uniq,color:null,width:null,r:8,name:routeName});
+      state.lines.push({id:lineId,pts:uniq,color:null,width:null,r:8,name:routeName,dash:null,cross:null,numShape:''});
       touched.add('line:'+lineId);
     }
     for(const p of placed){
@@ -2655,26 +2769,180 @@ $('#dlgExt').addEventListener('close',()=>{if(pendingStart&&!pendingStart.done)r
 
 /* ================= wiring ================= */
 $$('.tool').forEach(b=>b.addEventListener('click',()=>setTool(b.dataset.tool)));
-$('#btnUndo').addEventListener('click',undo);
-$('#btnRedo').addEventListener('click',redo);
 function newBlank(){
   const S=state.s;
   state=fresh();state.s=S;
   state.s.canvasFixed=true;state.s.canvasW=1920;state.s.canvasH=1080;
   sel=new Set();selVi=-1;selSeg=null;selWhole=false;drawing=null;
-  commit();fit();onSelChange();toast('白紙を作成しました（台紙 1920×1080）');
+  commit();fit();onSelChange();updateProjName();toast('白紙を作成しました（台紙 1920×1080）');
 }
-function loadSample(){state=demoState();sel=new Set();selVi=-1;drawing=null;commit();fit();onSelChange();toast('サンプルを開きました');}
-$('#btnSample').addEventListener('click',loadSample);
-$('#btnSample2').addEventListener('click',loadSample);
-$('#btnNew').addEventListener('click',()=>{
-  const S=state.s;state=fresh();state.s=S;sel=new Set();selVi=-1;drawing=null;commit();onSelChange();toast('白紙にしました（Ctrl+Zで戻せます）');
+function loadSample(){state=demoState();sel=new Set();selVi=-1;selSeg=null;selWhole=false;drawing=null;commit();fit();onSelChange();updateProjName();toast('サンプルを開きました');}
+
+/* ---- project file name / save / open ---- */
+const cleanName=n=>String(n||'').replace(/\.json$/i,'').replace(/[\\/:*?"<>|]/g,'').trim().slice(0,60);
+function projFile(){return (cleanName(state.name)||'rosenzu-project')+'.json';}
+function updateProjName(){const n=cleanName(state.name);$('#projName').textContent=n?n+'.json':'';}
+async function saveProject(){await saveBlob(projFile(),new Blob([JSON.stringify(state,null,1)],{type:'application/json'}));}
+function openSaveAs(){const d=$('#dlgSaveAs');$('#saName').value=cleanName(state.name)||'rosenzu-project';showDlg(d);setTimeout(()=>{try{$('#saName').select();}catch(_){}},30);}
+$('#saCancel').addEventListener('click',()=>hideDlg($('#dlgSaveAs')));
+$('#saGo').addEventListener('click',()=>{
+  state.name=cleanName($('#saName').value)||'rosenzu-project';
+  commit('name');updateProjName();hideDlg($('#dlgSaveAs'));saveProject();
 });
-$('#btnExport').addEventListener('click',openExport);
-$('#optSnap').addEventListener('change',e=>{snapOn=e.target.checked;savePrefs();});
-$('#zIn').addEventListener('click',()=>{const {W,H}=sizeOf();zoomAt(W/2,H/2,1.25);});
-$('#zOut').addEventListener('click',()=>{const {W,H}=sizeOf();zoomAt(W/2,H/2,0.8);});
-$('#zFit').addEventListener('click',()=>{fit();requestRender();});
+$('#saName').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();$('#saGo').click();}});
+$('#openPick').addEventListener('change',e=>{
+  const f=e.target.files&&e.target.files[0];if(!f)return;
+  const rd=new FileReader();
+  rd.onload=()=>{if(importText(String(rd.result||'')))updateProjName();};
+  rd.readAsText(f);e.target.value='';
+});
+$$('[data-close]').forEach(b=>b.addEventListener('click',()=>hideDlg($('#'+b.dataset.close))));
+
+/* ---- view / theme ---- */
+function applyView(){
+  const c=document.body.classList;
+  for(const k of ['left','right','toolbox','status'])c.toggle('hide-'+k,prefs.view[k]===false);
+  requestAnimationFrame(()=>{resize();requestRender();});
+}
+function applyTheme(){
+  const r=document.documentElement;
+  if(prefs.theme==='light'||prefs.theme==='dark')r.setAttribute('data-theme',prefs.theme);else r.removeAttribute('data-theme');
+  readCss();requestRender();
+}
+const zoomBy=f=>{const {W,H}=sizeOf();zoomAt(W/2,H/2,f);};
+
+/* ---- touch helpers: Shift / Alt as toggle buttons ---- */
+let modShift=false,modAlt=false;
+function updateMods(){
+  $$('[data-cmd="mod:shift"]').forEach(b=>b.setAttribute('aria-pressed',String(modShift)));
+  $$('[data-cmd="mod:alt"]').forEach(b=>b.setAttribute('aria-pressed',String(modAlt)));
+}
+const WE=e=>(modShift||modAlt)?new Proxy(e,{get(t,k){if(k==='shiftKey')return t.shiftKey||modShift;if(k==='altKey')return t.altKey||modAlt;const v=t[k];return typeof v==='function'?v.bind(t):v;}}):e;
+
+/* ---- commands (menus, toolbox and keyboard share these) ---- */
+function runCmd(c){
+  const [k,a]=String(c).split(':');
+  switch(k){
+    case 'save':saveProject();break;
+    case 'saveas':openSaveAs();break;
+    case 'open':$('#openPick').click();break;
+    case 'new':newBlank();break;
+    case 'sample':loadSample();break;
+    case 'table':openTable();break;
+    case 'data':openData();break;
+    case 'export':openExport();break;
+    case 'undo':undo();break;
+    case 'redo':redo();break;
+    case 'tool':setTool(a);break;
+    case 'dup':duplicateSel();break;
+    case 'selall':selectAll();break;
+    case 'del':deleteSel();break;
+    case 'fit':fit();requestRender();break;
+    case 'zin':zoomBy(1.25);break;
+    case 'zout':zoomBy(0.8);break;
+    case 'z100':zoomBy(1/view.k);break;
+    case 'vis':prefs.view[a]=prefs.view[a]===false;savePrefs();applyView();break;
+    case 'theme':prefs.theme=a;savePrefs();applyTheme();break;
+    case 'board':openBoard();break;
+    case 'help':showDlg($('#dlgHelp'));break;
+    case 'keys':showDlg($('#dlgKeys'));break;
+    case 'nudge':{const st=modShift?gridV():1,m={l:[-st,0],r:[st,0],u:[0,-st],d:[0,st]}[a];if(m)nudge(m[0],m[1]);break;}
+    case 'mod':if(a==='shift')modShift=!modShift;else modAlt=!modAlt;updateMods();break;
+  }
+}
+$('#toolbox').addEventListener('click',e=>{const b=e.target.closest('button[data-cmd]');if(!b||b.disabled)return;runCmd(b.dataset.cmd);});
+
+/* ---- menu bar ---- */
+const MENUS=[
+  {label:'ファイル',items:[
+    {t:'保存',c:'save',k:'Ctrl+S'},{t:'別名保存…',c:'saveas'},{t:'開く…',c:'open'},'-',
+    {t:'新規作成（白紙）',c:'new'},{t:'サンプル',c:'sample'},'-',
+    {t:'表から生成…',c:'table'},{t:'テキストで読込・コピー…',c:'data'},'-',
+    {t:'出力…（PNG / SVG）',c:'export'}]},
+  {label:'編集',items:[
+    {t:'元に戻す',c:'undo',k:'Ctrl+Z',dis:()=>hist.i<=0},{t:'やり直し',c:'redo',k:'Ctrl+Shift+Z',dis:()=>hist.i>=hist.s.length-1},'-',
+    {t:'選択',c:'tool:select',k:'V',chk:()=>tool==='select'},{t:'範囲選択',c:'tool:marquee',k:'M',chk:()=>tool==='marquee'},{t:'削除（クリックで消す）',c:'tool:erase',k:'E',chk:()=>tool==='erase'},{t:'移動（表示）',c:'tool:pan',chk:()=>tool==='pan'},'-',
+    {t:'複製',c:'dup',k:'Ctrl+D'},{t:'全選択',c:'selall',k:'Ctrl+A'},{t:'選択を削除',c:'del',k:'Delete'}]},
+  {label:'表示',items:[
+    {t:'全体を表示',c:'fit',k:'0'},{t:'拡大',c:'zin',k:'+'},{t:'縮小',c:'zout',k:'-'},{t:'100%',c:'z100'},'-',
+    {t:'作成ツール（左）',c:'vis:left',chk:()=>prefs.view.left!==false},
+    {t:'オプション（右メニュー）',c:'vis:right',chk:()=>prefs.view.right!==false},
+    {t:'操作ツールボックス（右下）',c:'vis:toolbox',chk:()=>prefs.view.toolbox!==false},
+    {t:'ステータスバー（下）',c:'vis:status',chk:()=>prefs.view.status!==false},'-',
+    {t:'テーマ: 自動',c:'theme:auto',chk:()=>prefs.theme==='auto'},{t:'テーマ: ライト',c:'theme:light',chk:()=>prefs.theme==='light'},{t:'テーマ: ダーク',c:'theme:dark',chk:()=>prefs.theme==='dark'}]},
+  {label:'設定',items:[{t:'ボード設定…',c:'board'}]},
+  {label:'ヘルプ',items:[{t:'使い方',c:'help'},{t:'ショートカットキー',c:'keys'}]}
+];
+const menubar=$('#menubar');
+let popEl=null,popIdx=-1;
+function buildMenubar(){menubar.innerHTML=MENUS.map((m,i)=>'<button type="button" data-menu="'+i+'" aria-haspopup="true" aria-expanded="false">'+m.label+'</button>').join('');}
+function closeMenu(){
+  if(popEl){popEl.remove();popEl=null;}
+  popIdx=-1;
+  $$('#menubar button').forEach(b=>b.setAttribute('aria-expanded','false'));
+}
+function openMenu(i,btn){
+  closeMenu();
+  popIdx=i;
+  const pop=document.createElement('div');pop.className='menupop';pop.setAttribute('role','menu');
+  pop.innerHTML=MENUS[i].items.map(it=>{
+    if(it==='-')return '<hr>';
+    return '<button type="button" role="menuitem" data-c="'+it.c+'"'+((it.dis&&it.dis())?' disabled':'')+'><span class="mk">'+((it.chk&&it.chk())?'✓':'')+'</span><span class="mt">'+it.t+'</span><span class="mk2">'+(it.k||'')+'</span></button>';
+  }).join('');
+  document.body.appendChild(pop);popEl=pop;
+  const r=btn.getBoundingClientRect();
+  pop.style.top=(r.bottom+4)+'px';
+  pop.style.left=Math.max(6,Math.min(r.left,innerWidth-pop.offsetWidth-6))+'px';
+  btn.setAttribute('aria-expanded','true');
+}
+menubar.addEventListener('click',e=>{const b=e.target.closest('button[data-menu]');if(!b)return;const i=+b.dataset.menu;if(popIdx===i)closeMenu();else openMenu(i,b);});
+menubar.addEventListener('pointerover',e=>{const b=e.target.closest('button[data-menu]');if(!b||popIdx<0||+b.dataset.menu===popIdx)return;openMenu(+b.dataset.menu,b);});
+document.addEventListener('click',e=>{
+  const it=e.target.closest('.menupop button[data-c]');
+  if(it){const c=it.dataset.c;closeMenu();runCmd(c);return;}
+  if(popEl&&!e.target.closest('#menubar'))closeMenu();
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&popEl){closeMenu();e.stopPropagation();}},true);
+
+/* ---- board settings dialog ---- */
+const dlgB=$('#dlgBoard'),boardBody=$('#boardBody');
+function renderBoard(){
+  const S=state.s,bp=(k,label,v)=>'<label class="chk"><input type="checkbox" data-bp="'+k+'"'+(v?' checked':'')+'> '+label+'</label>';
+  let h='<section class="bsec"><h3>台紙サイズ</h3>'+inChk('S.canvasFixed',S.canvasFixed,'サイズを固定する')
+    +(S.canvasFixed?'<div class="g2">'+fld('幅',inNum('S.canvasW',S.canvasW,{min:10}))+fld('高さ',inNum('S.canvasH',S.canvasH,{min:10}))+'</div>':'<p class="note">内容に合わせて自動的に決まります。</p>')
+    +'<div class="presets">'+[['Full HD 1920×1080',1920,1080],['HD 1280×720',1280,720],['4K 3840×2160',3840,2160],['正方形 1080×1080',1080,1080]].map(q=>'<button type="button" class="mini" data-bsize="'+q[1]+'x'+q[2]+'">'+q[0]+'</button>').join('')+'</div>'
+    +'<p class="note">固定すると、この範囲の外は書き出しで切れます。</p></section>';
+  h+='<section class="bsec"><h3>全体サイズ</h3><div class="row" style="grid-template-columns:96px 1fr"><label>サイズ (%)</label>'+inNum('S.scale',Math.round(S.scale*100),{min:20,max:500,step:5})+'</div><p class="note">線の太さや駅・ラベルの大きさを、比率そのままに拡大縮小します。</p><div class="fonts"><span>英語</span><b style="font-family:Sen,sans-serif">Sen</b><span>日本語</span><b style="font-family:\'Sawarabi Gothic\',sans-serif">Sawarabi Gothic</b></div></section>';
+  h+='<section class="bsec"><h3>吸着・表示</h3>'+bp('snap','吸着する（Altを押しながら操作すると一時的に外せます）',snapOn)
+    +'<div class="row" style="grid-template-columns:96px 1fr"><label>グリッド (px)</label><select data-a="S.grid" data-t="n">'+[1,2.5,5,10,20].map(v=>'<option value="'+v+'"'+(S.grid===v?' selected':'')+'>'+v+'</option>').join('')+'</select></div>'
+    +bp('showGrid','グリッド表示（作業エリアの点）',prefs.showGrid)
+    +bp('showGuides','ガイド表示（吸着したとき、他の駅や線とそろうと赤い線を出す）',prefs.showGuides)+'</section>';
+  h+='<section class="bsec"><h3>背景色</h3><div class="row"><label>色</label>'+inCol('S.bg',S.bg)+'</div>'+swatchRow('S.bg',S.bg)+inChk('S.transparent',S.transparent,'透明にする（書き出し時）')+'</section>';
+  boardBody.innerHTML=h;
+}
+function openBoard(){renderBoard();showDlg(dlgB);}
+boardBody.addEventListener('input',e=>{
+  const el=e.target;
+  if(el.dataset.bp){if(el.dataset.bp==='snap')snapOn=el.checked;else prefs[el.dataset.bp]=el.checked;savePrefs();requestRender();return;}
+  if(!el.dataset.a)return;
+  const path=el.dataset.a;
+  if(el.type==='checkbox'){setField(path,el.checked);commit(path);renderBoard();return;}
+  if(el.tagName==='SELECT'){setField(path,el.dataset.t==='n'?parseFloat(el.value):el.value);commit(path);return;}
+  if(el.type==='number'){const v=parseFloat(el.value);if(!Number.isFinite(v))return;setField(path,v);commit(path);return;}
+  setField(path,el.value);commit(path);
+});
+boardBody.addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;
+  if(b.dataset.bsize){const [w,h]=b.dataset.bsize.split('x').map(Number),S=state.s;S.canvasFixed=true;S.canvasW=w;S.canvasH=h;commit('board');fit();renderBoard();requestRender();return;}
+  if(b.dataset.a){const v=b.dataset.t==='n'?parseFloat(b.dataset.v):b.dataset.v;setField(b.dataset.a,v);commit(b.dataset.a);renderBoard();}
+});
+$('#boardClose').addEventListener('click',()=>hideDlg(dlgB));
+$('#boardReset').addEventListener('click',()=>{
+  const cw=state.s.canvasFixed,fw=state.s.canvasW,fh=state.s.canvasH;
+  state.s=Object.assign({},FORMAT,{canvasFixed:cw,canvasW:fw,canvasH:fh});
+  commit();renderBoard();renderInspector();requestRender();toast('フォーマットを初期値に戻しました');
+});
+
 $('#toolopts').addEventListener('click',e=>{
   const b=e.target.closest('button[data-lanes]');
   if(b){prefs.lanes=+b.dataset.lanes;savePrefs();updateToolOpts();return;}
@@ -2688,10 +2956,10 @@ $('#toolopts').addEventListener('input',e=>{
   if(el.id==='optHX'){const v=parseInt(el.value,10);if(Number.isFinite(v)){prefs.hubX=clamp(v,1,MAXL);savePrefs();}}
   if(el.id==='optHY'){const v=parseInt(el.value,10);if(Number.isFinite(v)){prefs.hubY=clamp(v,1,MAXL);savePrefs();}}
 });
-cv.addEventListener('pointerdown',onDown);
-cv.addEventListener('pointermove',onMove);
-cv.addEventListener('pointerup',onUp);
-cv.addEventListener('pointercancel',onUp);
+cv.addEventListener('pointerdown',e=>onDown(WE(e)));
+cv.addEventListener('pointermove',e=>onMove(WE(e)));
+cv.addEventListener('pointerup',e=>onUp(WE(e)));
+cv.addEventListener('pointercancel',e=>onUp(WE(e)));
 cv.addEventListener('pointerleave',onLeave);
 cv.addEventListener('contextmenu',e=>e.preventDefault());
 cv.addEventListener('wheel',onWheel,{passive:false});
@@ -2699,7 +2967,6 @@ cv.addEventListener('wheel',onWheel,{passive:false});
 /* ================= init ================= */
 (function init(){
   try{const p=JSON.parse(lsGet(LS_PREF)||'null');if(p){prefs.scale=[1,2,3,4].includes(p.scale)?p.scale:2;prefs.fmt=p.fmt==='svg'?'svg':'png';prefs.lanes=(Number.isInteger(p.lanes)&&p.lanes>=1&&p.lanes<=MAXL)?p.lanes:1;prefs.manualLanes=!!p.manualLanes;prefs.hubX=(Number.isInteger(p.hubX)&&p.hubX>=1&&p.hubX<=MAXL)?p.hubX:1;prefs.hubY=(Number.isInteger(p.hubY)&&p.hubY>=1&&p.hubY<=MAXL)?p.hubY:1;prefs.align=['center','start','end'].includes(p.align)?p.align:'center';snapOn=p.snap!==false;prefs.showGrid=p.showGrid!==false;prefs.showGuides=p.showGuides!==false;prefs.theme=['auto','light','dark'].includes(p.theme)?p.theme:'auto';if(p.view&&typeof p.view==='object')prefs.view=Object.assign({left:true,right:true,toolbox:true,status:true},p.view);}}catch(_){}
-  $('#optSnap').checked=snapOn;
   const saved=lsGet(LS_KEY);
   let st=null;
   if(saved){try{st=normalize(JSON.parse(saved));if(!st.lines.length&&!st.stations.length&&!st.texts.length)st=st;}catch(_){st=null;}}
@@ -2714,10 +2981,11 @@ cv.addEventListener('wheel',onWheel,{passive:false});
   }catch(_){}
   if(window.ResizeObserver)new ResizeObserver(()=>{resize();}).observe(stage);
   window.addEventListener('resize',resize);
+  buildMenubar();applyView();applyTheme();updateProjName();updateMods();
   resize();fit();
   setTool('select');renderInspector();updateUndo();requestRender();
   if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{mcache.clear();calcCap();requestRender();}).catch(()=>{});
-  if(window.__RZ_TEST)window.__rz={get state(){return state;},get sel(){return sel;},get view(){return view;},render,build,bounds,exportCanvas,toSVG,snapStation,setTool,hitTest,fit,commit,undo,redo,measure,get capC(){return capC;},effectivePos,lineTags,lineNameSpots,numberBadges,stationLineColor,stationLanePoints,geom,snapLinePoint,changeLanes,changeHubLanes,anchorOffset,computeCrossings,stationLines,numEntries,laneGuides,laneSnapPoint,hubLanes,applyScale,generateFromTable,get hist(){return hist;},normalize,demoState,loadJSON};
+  if(window.__RZ_TEST)window.__rz={get state(){return state;},get sel(){return sel;},get view(){return view;},render,build,bounds,exportCanvas,toSVG,snapStation,setTool,hitTest,fit,commit,undo,redo,measure,get capC(){return capC;},effectivePos,lineTags,lineNameSpots,numberBadges,stationLineColor,stationLanePoints,geom,snapLinePoint,changeLanes,changeHubLanes,anchorOffset,computeCrossings,stationLines,numEntries,laneGuides,laneSnapPoint,hubLanes,applyScale,generateFromTable,get hist(){return hist;},normalize,demoState,loadJSON,runCmd,get prefs(){return prefs;},openBoard,newBlank,setGuides,get guides(){return guides;}};
 })();
 
 })();

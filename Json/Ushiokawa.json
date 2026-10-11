@@ -1,0 +1,964 @@
+{
+ "v": 1,
+ "name": "",
+ "s": {
+  "scale": 1,
+  "lineColor": "#808080",
+  "lineWidth": 10,
+  "laneGap": 40,
+  "stW": 25,
+  "stH": 40,
+  "stStroke": 3,
+  "stGap": 40,
+  "stInk": "#000000",
+  "stFill": "#ffffff",
+  "labelSize": 28.5,
+  "labelBox": 160,
+  "labelH": 40,
+  "labelGap": 20,
+  "labelColor": "#000000",
+  "hubW": 120,
+  "hubH": 40,
+  "hubSize": 24,
+  "hubColor": "#231815",
+  "hubText": "#ffffff",
+  "hubPad": 14,
+  "numShape": "square",
+  "grid": 5,
+  "bg": "#ffffff",
+  "transparent": false,
+  "margin": 10,
+  "canvasFixed": false,
+  "canvasW": 3840,
+  "canvasH": 2160
+ },
+ "lines": [
+  {
+   "id": 1,
+   "pts": [
+    [
+     2000,
+     825
+    ],
+    [
+     2415,
+     825
+    ]
+   ],
+   "color": "#56CCF2",
+   "width": null,
+   "r": 0,
+   "name": "砂鉄平野線",
+   "dash": null,
+   "cross": null,
+   "numShape": ""
+  },
+  {
+   "id": 12,
+   "pts": [
+    [
+     1205,
+     785
+    ],
+    [
+     2210,
+     785
+    ]
+   ],
+   "color": "#2D9CDB",
+   "width": null,
+   "r": 0,
+   "name": "STR新幹線",
+   "dash": null,
+   "cross": null,
+   "numShape": ""
+  },
+  {
+   "id": 14,
+   "pts": [
+    [
+     2000,
+     785
+    ],
+    [
+     2000,
+     410
+    ]
+   ],
+   "color": "#BB6BD9",
+   "width": null,
+   "r": 0,
+   "name": "北鉄黒潮線",
+   "dash": null,
+   "cross": null,
+   "numShape": ""
+  },
+  {
+   "id": 24,
+   "pts": [
+    [
+     1205,
+     780
+    ],
+    [
+     1205,
+     410
+    ],
+    [
+     1797.5,
+     410
+    ],
+    [
+     1797.5,
+     410
+    ],
+    [
+     2180,
+     410
+    ]
+   ],
+   "color": "#EB5757",
+   "width": null,
+   "r": 0,
+   "name": "北鉄小木崎線",
+   "dash": null,
+   "cross": null,
+   "numShape": ""
+  },
+  {
+   "id": 68,
+   "pts": [
+    [
+     2000,
+     825
+    ],
+    [
+     2000,
+     1555
+    ],
+    [
+     1865,
+     1555
+    ]
+   ],
+   "color": "#F3B57E",
+   "width": null,
+   "r": 0,
+   "name": "六鉄吹雪線",
+   "dash": null,
+   "cross": null,
+   "numShape": ""
+  },
+  {
+   "id": 82,
+   "pts": [
+    [
+     1920,
+     1020
+    ],
+    [
+     1920,
+     1215
+    ]
+   ],
+   "color": "#EB5757",
+   "width": null,
+   "r": 0,
+   "name": "黒沼電鉄",
+   "dash": null,
+   "cross": null,
+   "numShape": ""
+  },
+  {
+   "id": 93,
+   "pts": [
+    [
+     2210,
+     825
+    ],
+    [
+     2210,
+     1180
+    ],
+    [
+     2485,
+     1180
+    ]
+   ],
+   "color": "#9B51E0",
+   "width": null,
+   "r": 0,
+   "name": "砂鉄夏戸線",
+   "dash": null,
+   "cross": null,
+   "numShape": ""
+  },
+  {
+   "id": 100,
+   "pts": [
+    [
+     2210,
+     1180
+    ],
+    [
+     2210,
+     1407.5
+    ],
+    [
+     2040,
+     1407.5
+    ],
+    [
+     2040,
+     1480
+    ]
+   ],
+   "color": "#56CCF2",
+   "width": null,
+   "r": 0,
+   "name": "砂鉄甘城線",
+   "dash": null,
+   "cross": null,
+   "numShape": ""
+  },
+  {
+   "id": 106,
+   "pts": [
+    [
+     1245,
+     785
+    ],
+    [
+     1245,
+     985
+    ]
+   ],
+   "color": "#EE8787",
+   "width": null,
+   "r": 0,
+   "name": "砂鉄春戸線",
+   "dash": null,
+   "cross": null,
+   "numShape": ""
+  }
+ ],
+ "stations": [
+  {
+   "id": 2,
+   "kind": "hub",
+   "x": 1225,
+   "y": 785,
+   "ang": 0,
+   "lanes": 1,
+   "text": "奏壌",
+   "pos": "top",
+   "vert": false,
+   "autoLabel": false,
+   "align": "center",
+   "nums": {},
+   "lanesX": 2,
+   "lanesY": 1,
+   "alignX": "center",
+   "alignY": "center"
+  },
+  {
+   "id": 3,
+   "kind": "st",
+   "x": 1732.5,
+   "y": 785,
+   "ang": 0,
+   "lanes": 1,
+   "text": "なな諸島",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": false,
+   "align": "center",
+   "nums": {}
+  },
+  {
+   "id": 4,
+   "kind": "st",
+   "x": 1862.5,
+   "y": 785,
+   "ang": 0,
+   "lanes": 1,
+   "text": "卯之原",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": false,
+   "align": "center",
+   "nums": {}
+  },
+  {
+   "id": 5,
+   "kind": "hub",
+   "x": 2000,
+   "y": 805,
+   "ang": 0,
+   "lanes": 2,
+   "text": "潮川",
+   "pos": "top",
+   "vert": true,
+   "autoLabel": false,
+   "align": "center",
+   "nums": {},
+   "lanesX": 1,
+   "lanesY": 2,
+   "alignX": "center",
+   "alignY": "center"
+  },
+  {
+   "id": 6,
+   "kind": "st",
+   "x": 2347.5,
+   "y": 825,
+   "ang": 0,
+   "lanes": 1,
+   "text": "紅葉台",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {}
+  },
+  {
+   "id": 7,
+   "kind": "st",
+   "x": 2137.5,
+   "y": 825,
+   "ang": 0,
+   "lanes": 1,
+   "text": "西春戸",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {}
+  },
+  {
+   "id": 8,
+   "kind": "hub",
+   "x": 2210,
+   "y": 805,
+   "ang": 0,
+   "lanes": 2,
+   "text": "春戸",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {},
+   "lanesX": 1,
+   "lanesY": 2,
+   "alignX": "center",
+   "alignY": "center"
+  },
+  {
+   "id": 9,
+   "kind": "st",
+   "x": 2412.5,
+   "y": 825,
+   "ang": 0,
+   "lanes": 1,
+   "text": "平野",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {}
+  },
+  {
+   "id": 10,
+   "kind": "st",
+   "x": 2282.5,
+   "y": 825,
+   "ang": 0,
+   "lanes": 1,
+   "text": "東春戸",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {}
+  },
+  {
+   "id": 15,
+   "kind": "st",
+   "x": 2000,
+   "y": 672.5,
+   "ang": 90,
+   "lanes": 1,
+   "text": "北潮川",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {}
+  },
+  {
+   "id": 16,
+   "kind": "st",
+   "x": 2000,
+   "y": 607.5,
+   "ang": 90,
+   "lanes": 1,
+   "text": "背山新田",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {}
+  },
+  {
+   "id": 17,
+   "kind": "st",
+   "x": 2000,
+   "y": 542.5,
+   "ang": 90,
+   "lanes": 1,
+   "text": "北背山",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {}
+  },
+  {
+   "id": 18,
+   "kind": "st",
+   "x": 2000,
+   "y": 477.5,
+   "ang": 90,
+   "lanes": 1,
+   "text": "荒津",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {}
+  },
+  {
+   "id": 19,
+   "kind": "st",
+   "x": 2072.5,
+   "y": 410,
+   "ang": 0,
+   "lanes": 1,
+   "text": "岳下",
+   "pos": "top",
+   "vert": true,
+   "autoLabel": false,
+   "align": "center",
+   "nums": {}
+  },
+  {
+   "id": 20,
+   "kind": "st",
+   "x": 1927.5,
+   "y": 410,
+   "ang": 0,
+   "lanes": 1,
+   "text": "黒潮",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": false,
+   "align": "center",
+   "nums": {}
+  },
+  {
+   "id": 23,
+   "kind": "hub",
+   "x": 2200,
+   "y": 410,
+   "ang": 0,
+   "lanes": 1,
+   "text": "北林",
+   "pos": "top",
+   "vert": false,
+   "autoLabel": false,
+   "align": "center",
+   "nums": {},
+   "lanesX": 2,
+   "lanesY": 1,
+   "alignX": "start",
+   "alignY": "center"
+  },
+  {
+   "id": 25,
+   "kind": "st",
+   "x": 1862.5,
+   "y": 410,
+   "ang": 0,
+   "lanes": 1,
+   "text": "小木崎口",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": false,
+   "align": "center",
+   "nums": {}
+  },
+  {
+   "id": 26,
+   "kind": "st",
+   "x": 1797.5,
+   "y": 410,
+   "ang": 0,
+   "lanes": 1,
+   "text": "小木崎",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": false,
+   "align": "center",
+   "nums": {}
+  },
+  {
+   "id": 27,
+   "kind": "st",
+   "x": 1732.5,
+   "y": 410,
+   "ang": 0,
+   "lanes": 1,
+   "text": "北なな諸島",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": false,
+   "align": "center",
+   "nums": {}
+  },
+  {
+   "id": 28,
+   "kind": "st",
+   "x": 1667.5,
+   "y": 410,
+   "ang": 0,
+   "lanes": 1,
+   "text": "八瀬原",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": false,
+   "align": "center",
+   "nums": {}
+  },
+  {
+   "id": 29,
+   "kind": "st",
+   "x": 1602.5,
+   "y": 410,
+   "ang": 0,
+   "lanes": 1,
+   "text": "友倉",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": false,
+   "align": "center",
+   "nums": {}
+  },
+  {
+   "id": 31,
+   "kind": "st",
+   "x": 1537.5,
+   "y": 410,
+   "ang": 0,
+   "lanes": 1,
+   "text": "能登湖",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {}
+  },
+  {
+   "id": 32,
+   "kind": "st",
+   "x": 1472.5,
+   "y": 410,
+   "ang": 0,
+   "lanes": 1,
+   "text": "岩羽",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {}
+  },
+  {
+   "id": 33,
+   "kind": "st",
+   "x": 1407.5,
+   "y": 410,
+   "ang": 0,
+   "lanes": 1,
+   "text": "農協南",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": false,
+   "align": "end",
+   "nums": {}
+  },
+  {
+   "id": 34,
+   "kind": "st",
+   "x": 1342.5,
+   "y": 410,
+   "ang": 0,
+   "lanes": 1,
+   "text": "蛇川",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": false,
+   "align": "center",
+   "nums": {}
+  },
+  {
+   "id": 35,
+   "kind": "st",
+   "x": 1205,
+   "y": 477.5,
+   "ang": 90,
+   "lanes": 1,
+   "text": "西蛇川",
+   "pos": "left",
+   "vert": true,
+   "autoLabel": false,
+   "align": "center",
+   "nums": {}
+  },
+  {
+   "id": 36,
+   "kind": "st",
+   "x": 1205,
+   "y": 542.5,
+   "ang": 90,
+   "lanes": 1,
+   "text": "熱砂",
+   "pos": "left",
+   "vert": false,
+   "autoLabel": false,
+   "align": "center",
+   "nums": {}
+  },
+  {
+   "id": 52,
+   "kind": "st",
+   "x": 1205,
+   "y": 607.5,
+   "ang": 90,
+   "lanes": 1,
+   "text": "北奏町",
+   "pos": "left",
+   "vert": false,
+   "autoLabel": false,
+   "align": "end",
+   "nums": {}
+  },
+  {
+   "id": 53,
+   "kind": "st",
+   "x": 1205,
+   "y": 672.5,
+   "ang": 90,
+   "lanes": 1,
+   "text": "奏壌北口",
+   "pos": "left",
+   "vert": false,
+   "autoLabel": false,
+   "align": "end",
+   "nums": {}
+  },
+  {
+   "id": 70,
+   "kind": "st",
+   "x": 2000,
+   "y": 1082.5,
+   "ang": 90,
+   "lanes": 1,
+   "text": "黒沼口",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": false,
+   "align": "end",
+   "nums": {}
+  },
+  {
+   "id": 71,
+   "kind": "st",
+   "x": 1960,
+   "y": 1147.5,
+   "ang": 90,
+   "lanes": 3,
+   "text": "黒沼",
+   "pos": "left",
+   "vert": false,
+   "autoLabel": false,
+   "align": "end",
+   "nums": {}
+  },
+  {
+   "id": 72,
+   "kind": "st",
+   "x": 2000,
+   "y": 1212.5,
+   "ang": 90,
+   "lanes": 1,
+   "text": "黒沼南",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": false,
+   "align": "end",
+   "nums": {}
+  },
+  {
+   "id": 73,
+   "kind": "st",
+   "x": 2000,
+   "y": 1277.5,
+   "ang": 90,
+   "lanes": 1,
+   "text": "南部橋",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": false,
+   "align": "end",
+   "nums": {}
+  },
+  {
+   "id": 74,
+   "kind": "st",
+   "x": 2000,
+   "y": 1342.5,
+   "ang": 90,
+   "lanes": 1,
+   "text": "西城西",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": false,
+   "align": "end",
+   "nums": {}
+  },
+  {
+   "id": 75,
+   "kind": "st",
+   "x": 2020,
+   "y": 1407.5,
+   "ang": 90,
+   "lanes": 2,
+   "text": "城西",
+   "pos": "left",
+   "vert": false,
+   "autoLabel": false,
+   "align": "end",
+   "nums": {}
+  },
+  {
+   "id": 76,
+   "kind": "hub",
+   "x": 2020,
+   "y": 1520,
+   "ang": 90,
+   "lanes": 1,
+   "text": "吹雪",
+   "pos": "right",
+   "vert": true,
+   "autoLabel": false,
+   "align": "end",
+   "nums": {},
+   "lanesX": 2,
+   "lanesY": 3,
+   "alignX": "center",
+   "alignY": "center"
+  },
+  {
+   "id": 79,
+   "kind": "st",
+   "x": 1920,
+   "y": 1082.5,
+   "ang": 90,
+   "lanes": 1,
+   "text": "黒沼神社",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "end",
+   "nums": {}
+  },
+  {
+   "id": 80,
+   "kind": "st",
+   "x": 1920,
+   "y": 1017.5,
+   "ang": 90,
+   "lanes": 1,
+   "text": "黒沼北口",
+   "pos": "left",
+   "vert": false,
+   "autoLabel": false,
+   "align": "end",
+   "nums": {}
+  },
+  {
+   "id": 81,
+   "kind": "st",
+   "x": 1920,
+   "y": 1212.5,
+   "ang": 90,
+   "lanes": 1,
+   "text": "黒沼南口",
+   "pos": "left",
+   "vert": false,
+   "autoLabel": false,
+   "align": "end",
+   "nums": {}
+  },
+  {
+   "id": 84,
+   "kind": "st",
+   "x": 1927.5,
+   "y": 1555,
+   "ang": 0,
+   "lanes": 1,
+   "text": "養蜂林園",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "end",
+   "nums": {}
+  },
+  {
+   "id": 85,
+   "kind": "st",
+   "x": 1862.5,
+   "y": 1555,
+   "ang": 0,
+   "lanes": 1,
+   "text": "中之島",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "end",
+   "nums": {}
+  },
+  {
+   "id": 94,
+   "kind": "st",
+   "x": 2210,
+   "y": 1067.5,
+   "ang": 90,
+   "lanes": 1,
+   "text": "La.Isatol",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "end",
+   "nums": {}
+  },
+  {
+   "id": 95,
+   "kind": "st",
+   "x": 2210,
+   "y": 1002.5,
+   "ang": 90,
+   "lanes": 1,
+   "text": "梅雨戸",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "end",
+   "nums": {}
+  },
+  {
+   "id": 96,
+   "kind": "hub",
+   "x": 2210,
+   "y": 1182,
+   "ang": 90,
+   "lanes": 1,
+   "text": "晴坂山王",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "end",
+   "nums": {},
+   "lanesX": 1,
+   "lanesY": 1,
+   "alignX": "center",
+   "alignY": "center"
+  },
+  {
+   "id": 97,
+   "kind": "st",
+   "x": 2347.5,
+   "y": 1180,
+   "ang": 0,
+   "lanes": 1,
+   "text": "元夏戸",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "end",
+   "nums": {}
+  },
+  {
+   "id": 98,
+   "kind": "st",
+   "x": 2412.5,
+   "y": 1180,
+   "ang": 0,
+   "lanes": 1,
+   "text": "東夏戸",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "end",
+   "nums": {}
+  },
+  {
+   "id": 99,
+   "kind": "hub",
+   "x": 2485,
+   "y": 1200,
+   "ang": 0,
+   "lanes": 1,
+   "text": "夏戸",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "end",
+   "nums": {},
+   "lanesX": 1,
+   "lanesY": 2,
+   "alignX": "center",
+   "alignY": "center"
+  },
+  {
+   "id": 102,
+   "kind": "st",
+   "x": 2210,
+   "y": 1296.5,
+   "ang": 90,
+   "lanes": 1,
+   "text": "甘傘",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "end",
+   "nums": {}
+  },
+  {
+   "id": 103,
+   "kind": "st",
+   "x": 2210,
+   "y": 1361.5,
+   "ang": 90,
+   "lanes": 1,
+   "text": "宮廷前",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "end",
+   "nums": {}
+  }
+ ],
+ "texts": [],
+ "table": [],
+ "seq": 107
+}
