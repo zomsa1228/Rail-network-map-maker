@@ -1,0 +1,631 @@
+{
+ "v": 1,
+ "name": "Tohan",
+ "s": {
+  "scale": 1,
+  "lineColor": "#808080",
+  "lineWidth": 10,
+  "laneGap": 40,
+  "stW": 25,
+  "stH": 40,
+  "stStroke": 3,
+  "stGap": 40,
+  "stInk": "#000000",
+  "stFill": "#ffffff",
+  "labelSize": 28.5,
+  "labelBox": 160,
+  "labelH": 40,
+  "labelGap": 20,
+  "labelColor": "#000000",
+  "hubW": 120,
+  "hubH": 40,
+  "hubSize": 24,
+  "hubColor": "#231815",
+  "hubText": "#ffffff",
+  "hubPad": 14,
+  "numShape": "square",
+  "grid": 5,
+  "bg": "#ffffff",
+  "transparent": false,
+  "margin": 10,
+  "canvasFixed": false,
+  "canvasW": 3840,
+  "canvasH": 2160
+ },
+ "lines": [
+  {
+   "id": 65,
+   "pts": [
+    [
+     1457.5,
+     1555
+    ],
+    [
+     1457.5,
+     280
+    ]
+   ],
+   "color": null,
+   "width": null,
+   "r": 0,
+   "name": "",
+   "dash": null,
+   "cross": null,
+   "numShape": ""
+  },
+  {
+   "id": 66,
+   "pts": [
+    [
+     1417.5,
+     1555
+    ],
+    [
+     1417.5,
+     280
+    ]
+   ],
+   "color": null,
+   "width": null,
+   "r": 0,
+   "name": "",
+   "dash": null,
+   "cross": null,
+   "numShape": ""
+  },
+  {
+   "id": 67,
+   "pts": [
+    [
+     1377.5,
+     1555
+    ],
+    [
+     1377.5,
+     1233
+    ],
+    [
+     1377.5,
+     280
+    ]
+   ],
+   "color": null,
+   "width": null,
+   "r": 0,
+   "name": "",
+   "dash": null,
+   "cross": null,
+   "numShape": ""
+  },
+  {
+   "id": 68,
+   "pts": [
+    [
+     1375,
+     1272.5
+    ],
+    [
+     1020,
+     1272.5
+    ]
+   ],
+   "color": null,
+   "width": null,
+   "r": 0,
+   "name": "",
+   "dash": null,
+   "cross": null,
+   "numShape": ""
+  },
+  {
+   "id": 69,
+   "pts": [
+    [
+     1415,
+     1312.5
+    ],
+    [
+     1020,
+     1312.5
+    ]
+   ],
+   "color": null,
+   "width": null,
+   "r": 0,
+   "name": "",
+   "dash": null,
+   "cross": null,
+   "numShape": ""
+  },
+  {
+   "id": 70,
+   "pts": [
+    [
+     1455,
+     1352.5
+    ],
+    [
+     1020,
+     1352.5
+    ]
+   ],
+   "color": null,
+   "width": null,
+   "r": 0,
+   "name": "",
+   "dash": null,
+   "cross": null,
+   "numShape": ""
+  }
+ ],
+ "stations": [
+  {
+   "id": 7,
+   "kind": "st",
+   "x": 1457.5,
+   "y": 752.5,
+   "ang": 90,
+   "lanes": 1,
+   "text": "南木綿ヶ原",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "start",
+   "nums": {}
+  },
+  {
+   "id": 8,
+   "kind": "st",
+   "x": 1457.5,
+   "y": 817.5,
+   "ang": 90,
+   "lanes": 1,
+   "text": "豆腐本町",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {}
+  },
+  {
+   "id": 10,
+   "kind": "st",
+   "x": 1437.5,
+   "y": 607.5,
+   "ang": 90,
+   "lanes": 2,
+   "text": "北豆腐町",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "start",
+   "nums": {}
+  },
+  {
+   "id": 11,
+   "kind": "st",
+   "x": 1457.5,
+   "y": 542.5,
+   "ang": 90,
+   "lanes": 1,
+   "text": "萌林",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "start",
+   "nums": {}
+  },
+  {
+   "id": 12,
+   "kind": "st",
+   "x": 1457.5,
+   "y": 477.5,
+   "ang": 90,
+   "lanes": 1,
+   "text": "萌林ヶ丘",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "start",
+   "nums": {}
+  },
+  {
+   "id": 13,
+   "kind": "st",
+   "x": 1437.5,
+   "y": 412.5,
+   "ang": 90,
+   "lanes": 2,
+   "text": "湯葉川",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {}
+  },
+  {
+   "id": 15,
+   "kind": "st",
+   "x": 1457.5,
+   "y": 347.5,
+   "ang": 90,
+   "lanes": 1,
+   "text": "湯葉河原",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "start",
+   "nums": {}
+  },
+  {
+   "id": 16,
+   "kind": "hub",
+   "x": 1417.5,
+   "y": 275,
+   "ang": 90,
+   "lanes": 3,
+   "text": "海砂浜",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "start",
+   "nums": {},
+   "lanesX": 5,
+   "lanesY": 1,
+   "alignX": "center",
+   "alignY": "center"
+  },
+  {
+   "id": 42,
+   "kind": "hub",
+   "x": 1417.5,
+   "y": 680,
+   "ang": 90,
+   "lanes": 3,
+   "text": "豆腐町",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {},
+   "lanesX": 5,
+   "lanesY": 1,
+   "alignX": "center",
+   "alignY": "center"
+  },
+  {
+   "id": 44,
+   "kind": "st",
+   "x": 1457.5,
+   "y": 882.5,
+   "ang": 90,
+   "lanes": 1,
+   "text": "万博公園",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {}
+  },
+  {
+   "id": 45,
+   "kind": "st",
+   "x": 1457.5,
+   "y": 947.5,
+   "ang": 90,
+   "lanes": 1,
+   "text": "花來",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {}
+  },
+  {
+   "id": 46,
+   "kind": "st",
+   "x": 1437.5,
+   "y": 1012.5,
+   "ang": 90,
+   "lanes": 2,
+   "text": "杏仁中央",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {}
+  },
+  {
+   "id": 47,
+   "kind": "st",
+   "x": 1457.5,
+   "y": 1077.5,
+   "ang": 90,
+   "lanes": 1,
+   "text": "道松",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {}
+  },
+  {
+   "id": 48,
+   "kind": "st",
+   "x": 1457.5,
+   "y": 1142.5,
+   "ang": 90,
+   "lanes": 1,
+   "text": "豆乳",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {}
+  },
+  {
+   "id": 49,
+   "kind": "hub",
+   "x": 1417.5,
+   "y": 1215,
+   "ang": 90,
+   "lanes": 3,
+   "text": "東水阪",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {},
+   "lanesX": 5,
+   "lanesY": 1,
+   "alignX": "center",
+   "alignY": "center"
+  },
+  {
+   "id": 50,
+   "kind": "st",
+   "x": 1457.5,
+   "y": 1417.5,
+   "ang": 90,
+   "lanes": 1,
+   "text": "八眞村",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {}
+  },
+  {
+   "id": 51,
+   "kind": "st",
+   "x": 1457.5,
+   "y": 1482.5,
+   "ang": 90,
+   "lanes": 1,
+   "text": "禱都",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {}
+  },
+  {
+   "id": 52,
+   "kind": "hub",
+   "x": 1417.5,
+   "y": 1555,
+   "ang": 90,
+   "lanes": 3,
+   "text": "颶利高原",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {},
+   "lanesX": 5,
+   "lanesY": 1,
+   "alignX": "center",
+   "alignY": "center"
+  },
+  {
+   "id": 58,
+   "kind": "st",
+   "x": 1247.5,
+   "y": 1352.5,
+   "ang": 0,
+   "lanes": 1,
+   "text": "北沼平",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {}
+  },
+  {
+   "id": 59,
+   "kind": "st",
+   "x": 1182.5,
+   "y": 1312.5,
+   "ang": 0,
+   "lanes": 3,
+   "text": "水阪",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {}
+  },
+  {
+   "id": 60,
+   "kind": "st",
+   "x": 1117.5,
+   "y": 1352.5,
+   "ang": 0,
+   "lanes": 1,
+   "text": "水緑海底",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {}
+  },
+  {
+   "id": 71,
+   "kind": "st",
+   "x": 1312.5,
+   "y": 1352.5,
+   "ang": 0,
+   "lanes": 1,
+   "text": "北南環",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "end",
+   "nums": {}
+  },
+  {
+   "id": 72,
+   "kind": "st",
+   "x": 1052.5,
+   "y": 1312.5,
+   "ang": 0,
+   "lanes": 3,
+   "text": "緑砂",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "end",
+   "nums": {}
+  }
+ ],
+ "texts": [],
+ "table": [
+  {
+   "id": 17,
+   "routeNo": "",
+   "routeName": "",
+   "station": "海砂浜",
+   "hub": true
+  },
+  {
+   "id": 18,
+   "routeNo": "",
+   "routeName": "外縁線",
+   "station": "湯葉河原",
+   "hub": false
+  },
+  {
+   "id": 19,
+   "routeNo": "",
+   "routeName": "外縁線",
+   "station": "湯葉川",
+   "hub": false
+  },
+  {
+   "id": 20,
+   "routeNo": "",
+   "routeName": "外縁線",
+   "station": "萌林ヶ丘",
+   "hub": false
+  },
+  {
+   "id": 21,
+   "routeNo": "",
+   "routeName": "外縁線",
+   "station": "萌林",
+   "hub": false
+  },
+  {
+   "id": 22,
+   "routeNo": "",
+   "routeName": "外縁線",
+   "station": "北豆腐町",
+   "hub": false
+  },
+  {
+   "id": 23,
+   "routeNo": "",
+   "routeName": "",
+   "station": "豆腐町",
+   "hub": true
+  },
+  {
+   "id": 24,
+   "routeNo": "",
+   "routeName": "豆阪線",
+   "station": "南木綿ヶ丘",
+   "hub": false
+  },
+  {
+   "id": 25,
+   "routeNo": "",
+   "routeName": "豆阪線",
+   "station": "豆腐本町",
+   "hub": false
+  },
+  {
+   "id": 26,
+   "routeNo": "",
+   "routeName": "豆阪線",
+   "station": "万博公園",
+   "hub": false
+  },
+  {
+   "id": 27,
+   "routeNo": "",
+   "routeName": "豆阪線",
+   "station": "花來",
+   "hub": false
+  },
+  {
+   "id": 28,
+   "routeNo": "",
+   "routeName": "豆阪線",
+   "station": "杏仁中央",
+   "hub": true
+  },
+  {
+   "id": 29,
+   "routeNo": "",
+   "routeName": "豆阪線",
+   "station": "道松",
+   "hub": false
+  },
+  {
+   "id": 30,
+   "routeNo": "",
+   "routeName": "豆阪線",
+   "station": "豆乳",
+   "hub": false
+  },
+  {
+   "id": 31,
+   "routeNo": "",
+   "routeName": "豆阪線",
+   "station": "東水阪",
+   "hub": true
+  },
+  {
+   "id": 32,
+   "routeNo": "",
+   "routeName": "豆阪線",
+   "station": "八眞村",
+   "hub": false
+  },
+  {
+   "id": 33,
+   "routeNo": "",
+   "routeName": "豆阪線",
+   "station": "禱都",
+   "hub": false
+  },
+  {
+   "id": 39,
+   "routeNo": "",
+   "routeName": "豆阪線",
+   "station": "颶利高原",
+   "hub": true
+  }
+ ],
+ "seq": 75
+}
