@@ -107,7 +107,7 @@ button{cursor:pointer}
 /* ---- inspector ---- */
 .side{width:312px;flex:none;display:flex;flex-direction:column;min-height:0;background:var(--panel);border-left:1px solid var(--rule)}
 .insp{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain}
-.tbx{flex:none;margin-top:auto;display:flex;flex-direction:column;gap:6px;padding:8px;border-top:1px solid var(--rule2);background:var(--panel)}
+.tbx{flex:none;display:flex;flex-direction:column;gap:6px;padding:8px;border-bottom:1px solid var(--rule2);background:var(--panel)}
 .tbx-row{display:flex;gap:4px}
 .tbx .tool{flex:1;width:auto;min-width:0;height:50px;border-color:var(--rule2)}
 .tbx-lbl{margin:0 0 -2px 2px;font-size:10.5px;color:var(--ink3)}
@@ -246,8 +246,6 @@ dialog::backdrop{background:rgba(18,18,20,.5)}
     </div>
   </section>
   <aside class="side" id="side">
-    <div class="phead" id="pheadOpt"><span>オプション</span><button class="pclose" type="button" data-hide="right" title="オプションを閉じる（「表示」メニューで再表示できます）" aria-label="オプションを閉じる">×</button></div>
-    <div class="insp" id="insp" aria-label="オプション"></div>
     <div class="tbx" id="toolbox" role="toolbar" aria-label="操作ツールボックス">
       <div class="phead"><span>ツールボックス</span><button class="pclose" type="button" data-hide="toolbox" title="ツールボックスを閉じる（「表示」メニューで再表示できます）" aria-label="ツールボックスを閉じる">×</button></div>
       <div class="tbx-row">
@@ -265,6 +263,8 @@ dialog::backdrop{background:rgba(18,18,20,.5)}
         <button class="cmd" type="button" data-cmd="desel" title="選択を解除 (Esc)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>選択解除</span></button>
       </div>
     </div>
+    <div class="phead" id="pheadOpt"><span>オプション</span><button class="pclose" type="button" data-hide="right" title="オプションを閉じる（「表示」メニューで再表示できます）" aria-label="オプションを閉じる">×</button></div>
+    <div class="insp" id="insp" aria-label="オプション"></div>
   </aside>
 </main>
 
@@ -425,7 +425,7 @@ dialog::backdrop{background:rgba(18,18,20,.5)}
       <li>右下のツールボックスに、選択・範囲選択・削除・移動と、元に戻す・やり直し・複製・選択削除・全選択・選択解除があります（タッチ向け）。拡大縮小は画面下の小さなボタンで行えます。各パネルの右上の×で隠せて、「表示」メニューから戻せます。</li>
     </ul>
     <h3>駅番号</h3>
-    <ul><li>駅を選ぶと、通っている路線ごとに駅番号（文字）を入力できます。路線の色の枠（円か四角）で駅名の左に表示します。</li></ul>
+    <ul><li>駅を選ぶと、通っている路線ごとに駅番号（文字）を入力できます。路線の色の枠（円か四角）で表示します。</li><li>位置は「駅と駅名の間」「駅の中（通常駅のみ。枠なし）」「駅の左・右・上・下（駅名と別の側）」から選べます。全体の既定は右メニューの「駅番号（既定）」にあります。</li></ul>
     <h3>ファイル</h3>
     <ul>
       <li>PCとスマホの間でデータを移すときは、「ファイル → QRコードで転送」を使います。送る側がQRコードを順に表示し、受け取る側がカメラで読み取ります。</li>
@@ -484,8 +484,18 @@ const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'
 /* ================= format (measured from the supplied spec image) ================= */
 const FAMILY='"Sen","Sawarabi Gothic","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo","Noto Sans CJK JP",sans-serif';
 const FAMILY_SVG="Sen,'Sawarabi Gothic','Hiragino Sans','Hiragino Kaku Gothic ProN','Yu Gothic',Meiryo,sans-serif";
-const BASE_DIMS={lineWidth:10,laneGap:40,stW:25,stH:40,stStroke:3,stGap:40,labelSize:28.5,labelBox:160,labelH:40,labelGap:20,hubW:120,hubH:40,hubSize:24,hubPad:14};
+const BASE_STD={lineWidth:10,laneGap:40,stW:25,stH:40,stStroke:3,stGap:40,labelSize:28.5,labelBox:160,labelH:40,labelGap:20,hubW:120,hubH:40,hubSize:24,hubPad:14};
+// 路面電車など超近距離向け: 文字・駅・線を小さく、間隔を狭くした別フォーマット
+const BASE_TRAM={lineWidth:6,laneGap:22,stW:14,stH:22,stStroke:2,stGap:20,labelSize:16,labelBox:100,labelH:24,labelGap:12,hubW:70,hubH:24,hubSize:14,hubPad:8};
+const NUMPOS_KEYS=['between','inside','left','right','top','bottom'];
+const FORMATS={
+  standard:{name:'標準（鉄道）',dims:BASE_STD,grid:5},
+  tram:{name:'路面電車など（小さめ）',dims:BASE_TRAM,grid:2.5}
+};
+const baseDims=S=>(FORMATS[S.format]||FORMATS.standard).dims;
 const FORMAT={
+  format:'standard',
+  numPos:'between',
   scale:1,
   lineColor:'#808080', lineWidth:10, laneGap:40,
   stW:25, stH:40, stStroke:3, stGap:40, stInk:'#000000', stFill:'#ffffff',
@@ -498,7 +508,8 @@ const FORMAT={
 function applyScale(S){
   const k=Math.max(0.2,Math.min(5,S.scale||1));
   S.scale=k;
-  for(const key in BASE_DIMS)S[key]=r2(BASE_DIMS[key]*k);
+  const B=baseDims(S);
+  for(const key in B)S[key]=r2(B[key]*k);
 }
 const LS_KEY='rosenzu-maker-v1', LS_PREF='rosenzu-maker-prefs-v1';
 const POS=['right','left','top','bottom','none'];
@@ -555,6 +566,8 @@ function normalize(o){
       else if(typeof v==='string')st.s[k]=v;
     }
     if(st.s.numShape!=='square')st.s.numShape='circle';
+    if(!FORMATS[st.s.format])st.s.format='standard';
+    if(!NUMPOS_KEYS.includes(st.s.numPos))st.s.numPos='between';
   }
   applyScale(st.s);
   const legacyCross=(o.s&&(o.s.cross==='bridge'||o.s.cross==='arc'))?o.s.cross:(o.s&&o.s.hop===true?'arc':'');
@@ -572,7 +585,7 @@ function normalize(o){
   for(const s of (Array.isArray(o.stations)?o.stations:[])){
     if(!s)continue;
     const kind=s.kind==='hub'?'hub':'st';
-    const q={id:s.id,kind,x:numOr(s.x,0),y:numOr(s.y,0),ang:numOr(s.ang,0),lanes:clamp(Math.round(numOr(s.lanes,1)),1,MAXL),text:s.text==null?'':String(s.text),pos:POS.includes(s.pos)?s.pos:'right',vert:!!s.vert,autoLabel:s.autoLabel!==false,align:['center','start','end'].includes(s.align)?s.align:'center',nums:(s.nums&&typeof s.nums==='object')?Object.fromEntries(Object.entries(s.nums).filter(([k,v])=>String(v==null?'':v).trim()).map(([k,v])=>[String(k),String(v)])):{},_num:s.num==null?'':String(s.num).trim()};
+    const q={id:s.id,kind,x:numOr(s.x,0),y:numOr(s.y,0),ang:numOr(s.ang,0),lanes:clamp(Math.round(numOr(s.lanes,1)),1,MAXL),text:s.text==null?'':String(s.text),pos:POS.includes(s.pos)?s.pos:'right',vert:!!s.vert,autoLabel:s.autoLabel!==false,align:['center','start','end'].includes(s.align)?s.align:'center',numPos:NUMPOS_KEYS.includes(s.numPos)?s.numPos:'',nums:(s.nums&&typeof s.nums==='object')?Object.fromEntries(Object.entries(s.nums).filter(([k,v])=>String(v==null?'':v).trim()).map(([k,v])=>[String(k),String(v)])):{},_num:s.num==null?'':String(s.num).trim()};
     if(kind==='hub'){
       if(Number.isFinite(parseFloat(s.lanesX))&&Number.isFinite(parseFloat(s.lanesY))){
         q.lanesX=clamp(Math.round(parseFloat(s.lanesX)),1,MAXL);q.lanesY=clamp(Math.round(parseFloat(s.lanesY)),1,MAXL);
@@ -600,7 +613,7 @@ function normalize(o){
   return st;
 }
 // 既定のサンプル（添付された Ushiokawa.json の配置）
-const DEFAULT_PROJECT={"v":1,"s":{"scale":1,"lineColor":"#808080","lineWidth":10,"laneGap":40,"stW":25,"stH":40,"stStroke":3,"stGap":40,"stInk":"#000000","stFill":"#ffffff","labelSize":28.5,"labelBox":160,"labelH":40,"labelGap":20,"labelColor":"#000000","hubW":120,"hubH":40,"hubSize":24,"hubColor":"#231815","hubText":"#ffffff","hubPad":14,"numShape":"square","grid":5,"bg":"#ffffff","transparent":false,"margin":10,"canvasFixed":false,"canvasW":3840,"canvasH":2160,"hop":false},"lines":[{"id":1,"pts":[[2000,825],[2415,825]],"color":"#56CCF2","width":null,"r":0,"name":"","dash":null},{"id":12,"pts":[[1205,785],[2210,785]],"color":"#2D9CDB","width":null,"r":0,"name":"","dash":null},{"id":14,"pts":[[2000,750],[2000,410]],"color":"#BB6BD9","width":null,"r":0,"name":"北鉄黒潮線","dash":null},{"id":24,"pts":[[1205,780],[1205,410],[1797.5,410],[1797.5,410],[2180,410]],"color":"#EB5757","width":null,"r":0,"name":"","dash":null},{"id":68,"pts":[[2000,850],[2000,1555],[1865,1555]],"color":"#F3B57E","width":null,"r":0,"name":"","dash":null},{"id":82,"pts":[[1920,1020],[1920,1215]],"color":"#EB5757","width":null,"r":0,"name":"","dash":null},{"id":93,"pts":[[2210,825],[2210,1180],[2485,1180]],"color":"#9B51E0","width":null,"r":0,"name":"","dash":null},{"id":100,"pts":[[2210,1180],[2210,1410],[2000,1410]],"color":"#56CCF2","width":null,"r":0,"name":"","dash":null}],"stations":[{"id":2,"kind":"hub","x":1205,"y":785,"ang":0,"lanes":1,"text":"奏壌","pos":"top","vert":true,"autoLabel":false,"align":"center","num":""},{"id":3,"kind":"st","x":1732.5,"y":785,"ang":0,"lanes":1,"text":"なな諸島","pos":"bottom","vert":true,"autoLabel":false,"align":"center","num":""},{"id":4,"kind":"st","x":1862.5,"y":785,"ang":0,"lanes":1,"text":"卯之原","pos":"bottom","vert":true,"autoLabel":false,"align":"center","num":""},{"id":5,"kind":"hub","x":2000,"y":805,"ang":0,"lanes":2,"text":"潮川","pos":"top","vert":true,"autoLabel":false,"align":"center","num":""},{"id":6,"kind":"st","x":2347.5,"y":825,"ang":0,"lanes":1,"text":"紅葉台","pos":"bottom","vert":true,"autoLabel":true,"align":"center","num":""},{"id":7,"kind":"st","x":2137.5,"y":825,"ang":0,"lanes":1,"text":"西春戸","pos":"bottom","vert":true,"autoLabel":true,"align":"center","num":""},{"id":8,"kind":"hub","x":2210,"y":825,"ang":0,"lanes":2,"text":"春戸","pos":"bottom","vert":true,"autoLabel":true,"align":"center","num":""},{"id":9,"kind":"st","x":2412.5,"y":825,"ang":0,"lanes":1,"text":"平野","pos":"bottom","vert":true,"autoLabel":true,"align":"center","num":""},{"id":10,"kind":"st","x":2282.5,"y":825,"ang":0,"lanes":1,"text":"東春戸","pos":"bottom","vert":true,"autoLabel":true,"align":"center","num":""},{"id":15,"kind":"st","x":2000,"y":672.5,"ang":90,"lanes":1,"text":"北潮川","pos":"right","vert":false,"autoLabel":true,"align":"center","num":""},{"id":16,"kind":"st","x":2000,"y":607.5,"ang":90,"lanes":1,"text":"背山新田","pos":"right","vert":false,"autoLabel":true,"align":"center","num":""},{"id":17,"kind":"st","x":2000,"y":542.5,"ang":90,"lanes":1,"text":"北背山","pos":"right","vert":false,"autoLabel":true,"align":"center","num":""},{"id":18,"kind":"st","x":2000,"y":477.5,"ang":90,"lanes":1,"text":"荒津","pos":"right","vert":false,"autoLabel":true,"align":"center","num":""},{"id":19,"kind":"st","x":2072.5,"y":410,"ang":0,"lanes":1,"text":"岳下","pos":"top","vert":true,"autoLabel":false,"align":"center","num":""},{"id":20,"kind":"st","x":1927.5,"y":410,"ang":0,"lanes":1,"text":"黒潮","pos":"bottom","vert":true,"autoLabel":false,"align":"center","num":""},{"id":23,"kind":"hub","x":2185,"y":410,"ang":0,"lanes":1,"text":"北林","pos":"top","vert":false,"autoLabel":false,"align":"center","num":""},{"id":25,"kind":"st","x":1862.5,"y":410,"ang":0,"lanes":1,"text":"小木崎口","pos":"bottom","vert":true,"autoLabel":false,"align":"center","num":""},{"id":26,"kind":"st","x":1797.5,"y":410,"ang":0,"lanes":1,"text":"小木崎","pos":"bottom","vert":true,"autoLabel":false,"align":"center","num":""},{"id":27,"kind":"st","x":1732.5,"y":410,"ang":0,"lanes":1,"text":"北なな諸島","pos":"bottom","vert":true,"autoLabel":false,"align":"center","num":""},{"id":28,"kind":"st","x":1667.5,"y":410,"ang":0,"lanes":1,"text":"八瀬原","pos":"bottom","vert":true,"autoLabel":false,"align":"center","num":""},{"id":29,"kind":"st","x":1602.5,"y":410,"ang":0,"lanes":1,"text":"友倉","pos":"bottom","vert":true,"autoLabel":false,"align":"center","num":""},{"id":31,"kind":"st","x":1537.5,"y":410,"ang":0,"lanes":1,"text":"能登湖","pos":"bottom","vert":true,"autoLabel":true,"align":"center","num":""},{"id":32,"kind":"st","x":1472.5,"y":410,"ang":0,"lanes":1,"text":"岩羽","pos":"bottom","vert":true,"autoLabel":true,"align":"center","num":""},{"id":33,"kind":"st","x":1407.5,"y":410,"ang":0,"lanes":1,"text":"農協南","pos":"bottom","vert":true,"autoLabel":false,"align":"end","num":""},{"id":34,"kind":"st","x":1342.5,"y":410,"ang":0,"lanes":1,"text":"蛇川","pos":"bottom","vert":true,"autoLabel":false,"align":"center","num":""},{"id":35,"kind":"st","x":1205,"y":477.5,"ang":90,"lanes":1,"text":"西蛇川","pos":"left","vert":true,"autoLabel":false,"align":"center","num":""},{"id":36,"kind":"st","x":1205,"y":542.5,"ang":90,"lanes":1,"text":"熱砂","pos":"left","vert":false,"autoLabel":false,"align":"center","num":""},{"id":52,"kind":"st","x":1205,"y":607.5,"ang":90,"lanes":1,"text":"北奏町","pos":"left","vert":false,"autoLabel":false,"align":"end","num":""},{"id":53,"kind":"st","x":1205,"y":672.5,"ang":90,"lanes":1,"text":"奏壌北口","pos":"left","vert":false,"autoLabel":false,"align":"end","num":""},{"id":70,"kind":"st","x":2000,"y":1082.5,"ang":90,"lanes":1,"text":"黒沼口","pos":"right","vert":false,"autoLabel":false,"align":"end","num":""},{"id":71,"kind":"st","x":1960,"y":1147.5,"ang":90,"lanes":3,"text":"黒沼","pos":"left","vert":false,"autoLabel":false,"align":"end","num":""},{"id":72,"kind":"st","x":2000,"y":1212.5,"ang":90,"lanes":1,"text":"黒沼南","pos":"right","vert":false,"autoLabel":false,"align":"end","num":""},{"id":73,"kind":"st","x":2000,"y":1277.5,"ang":90,"lanes":1,"text":"南部橋","pos":"right","vert":false,"autoLabel":false,"align":"end","num":""},{"id":74,"kind":"st","x":2000,"y":1342.5,"ang":90,"lanes":1,"text":"西城西","pos":"right","vert":false,"autoLabel":false,"align":"end","num":""},{"id":75,"kind":"st","x":2000,"y":1407.5,"ang":90,"lanes":1,"text":"城西","pos":"left","vert":false,"autoLabel":false,"align":"end","num":""},{"id":76,"kind":"hub","x":2000,"y":1480,"ang":90,"lanes":1,"text":"吹雪","pos":"right","vert":false,"autoLabel":false,"align":"end","num":""},{"id":79,"kind":"st","x":1920,"y":1082.5,"ang":90,"lanes":1,"text":"黒沼神社","pos":"right","vert":false,"autoLabel":true,"align":"end","num":""},{"id":80,"kind":"st","x":1920,"y":1017.5,"ang":90,"lanes":1,"text":"黒沼北口","pos":"left","vert":false,"autoLabel":false,"align":"end","num":""},{"id":81,"kind":"st","x":1920,"y":1212.5,"ang":90,"lanes":1,"text":"黒沼南口","pos":"left","vert":false,"autoLabel":false,"align":"end","num":""},{"id":84,"kind":"st","x":1927.5,"y":1555,"ang":0,"lanes":1,"text":"養蜂林園","pos":"bottom","vert":true,"autoLabel":true,"align":"end","num":""},{"id":85,"kind":"st","x":1862.5,"y":1555,"ang":0,"lanes":1,"text":"中之島","pos":"bottom","vert":true,"autoLabel":true,"align":"end","num":""},{"id":94,"kind":"st","x":2210,"y":1067.5,"ang":90,"lanes":1,"text":"La.Isatol","pos":"right","vert":false,"autoLabel":true,"align":"end","num":""},{"id":95,"kind":"st","x":2210,"y":1002.5,"ang":90,"lanes":1,"text":"梅雨戸","pos":"right","vert":false,"autoLabel":true,"align":"end","num":""},{"id":96,"kind":"hub","x":2210,"y":1182,"ang":90,"lanes":1,"text":"晴坂山王","pos":"right","vert":true,"autoLabel":true,"align":"end","num":""},{"id":97,"kind":"st","x":2347.5,"y":1180,"ang":0,"lanes":1,"text":"元夏戸","pos":"bottom","vert":true,"autoLabel":true,"align":"end","num":""},{"id":98,"kind":"st","x":2412.5,"y":1180,"ang":0,"lanes":1,"text":"東夏戸","pos":"bottom","vert":true,"autoLabel":true,"align":"end","num":""},{"id":99,"kind":"hub","x":2485,"y":1180,"ang":0,"lanes":1,"text":"夏戸","pos":"bottom","vert":true,"autoLabel":true,"align":"end","num":""},{"id":102,"kind":"st","x":2210,"y":1296.5,"ang":90,"lanes":1,"text":"甘傘","pos":"right","vert":false,"autoLabel":true,"align":"end","num":""},{"id":103,"kind":"st","x":2210,"y":1361.5,"ang":90,"lanes":1,"text":"宮廷前","pos":"right","vert":false,"autoLabel":true,"align":"end","num":""}],"texts":[],"table":[],"seq":106};
+const DEFAULT_PROJECT={"v":1,"name":"","s":{"scale":1,"lineColor":"#808080","lineWidth":10,"laneGap":40,"stW":25,"stH":40,"stStroke":3,"stGap":40,"stInk":"#000000","stFill":"#ffffff","labelSize":28.5,"labelBox":160,"labelH":40,"labelGap":20,"labelColor":"#000000","hubW":120,"hubH":40,"hubSize":24,"hubColor":"#231815","hubText":"#ffffff","hubPad":14,"numShape":"square","grid":5,"bg":"#ffffff","transparent":false,"margin":10,"canvasFixed":false,"canvasW":3840,"canvasH":2160},"lines":[{"id":1,"pts":[[2000,825],[2970,825]],"color":"#56CCF2","width":null,"r":0,"name":"","dash":null,"cross":["bridge"],"numShape":""},{"id":12,"pts":[[1205,785],[2210,785]],"color":"#2D9CDB","width":null,"r":0,"name":"","dash":null,"cross":null,"numShape":""},{"id":14,"pts":[[2000,785],[2000,410]],"color":"#BB6BD9","width":null,"r":0,"name":"北鉄黒潮線","dash":null,"cross":null,"numShape":""},{"id":24,"pts":[[1205,780],[1205,410],[1797.5,410],[1797.5,410],[2045,410],[2097.5,410],[2097.5,330],[2145,330]],"color":"#EB5757","width":null,"r":0,"name":"","dash":null,"cross":null,"numShape":""},{"id":68,"pts":[[2000,825],[2000,1560],[1855,1560]],"color":"#F3B57E","width":null,"r":0,"name":"","dash":null,"cross":null,"numShape":""},{"id":82,"pts":[[1920,1000],[1920,1200]],"color":"#EB5757","width":null,"r":0,"name":"","dash":null,"cross":null,"numShape":""},{"id":93,"pts":[[2250,825],[2250,937.5],[2290,1005],[2290,1270],[2570,1270],[2755,1270]],"color":"#9B51E0","width":null,"r":0,"name":"","dash":null,"cross":null,"numShape":""},{"id":100,"pts":[[2250,1200],[2250,1392.5],[2040,1392.5],[2040,1440]],"color":"#56CCF2","width":null,"r":0,"name":"","dash":null,"cross":null,"numShape":""},{"id":108,"pts":[[1732.5,785],[1732.5,945],[1732.5,1440],[2755,1440],[2755,1270]],"color":"#EB5757","width":null,"r":0,"name":"EXR線","dash":null,"cross":null,"numShape":""},{"id":109,"pts":[[2970,370],[2580,370],[2580,555],[2170,555],[2170,825],[2170,945],[1957.5,945],[1205,945],[1205,785]],"color":"#EE8787","width":null,"r":0,"name":"砂鉄春戸線","dash":null,"cross":null,"numShape":""},{"id":118,"pts":[[2210,785],[2210,965],[2210,1055],[2975,1055]],"color":"#EB5757","width":null,"r":0,"name":"明日鉄東戸本線(春永線)","dash":null,"cross":null,"numShape":""},{"id":128,"pts":[[1205,250],[1205,377.5],[1277.5,450],[1422.5,450],[1422.5,905],[1490,905],[1490,1170],[1490,1245],[1490,1350],[1490,1480],[2975,1480]],"color":"#56CCF2","width":null,"r":0,"name":"砂鉄雪山線","dash":[0,0,0,0,0,0,1,1,0,0],"cross":null,"numShape":""},{"id":131,"pts":[[1530,1025],[1530,1170],[1185,1170]],"color":"#BB6BD9","width":null,"r":0,"name":"","dash":null,"cross":null,"numShape":""},{"id":154,"pts":[[1735,1520],[1695,1520],[1695,1887.5],[1735,1887.5]],"color":"#6FCF97","width":null,"r":0,"name":"","dash":null,"cross":null,"numShape":""},{"id":163,"pts":[[1655,1750],[1655,1830],[1535,1830]],"color":"#F2994A","width":null,"r":0,"name":"","dash":null,"cross":null,"numShape":""},{"id":174,"pts":[[2250,827],[2250,745],[2560,745],[2560,860],[2410,860],[2410,985],[2755,985],[2755,690],[2210,690],[2210,825]],"color":"#F2994A","width":null,"r":0,"name":"春戸市内線","dash":null,"cross":null,"numShape":""},{"id":175,"pts":[[2755,1270],[2755,985],[2620,825],[2620,330],[2145,330],[2145,250]],"color":"#27AE60","width":null,"r":0,"name":"","dash":null,"cross":null,"numShape":""},{"id":187,"pts":[[1277.5,250],[1277.5,370],[1407.5,370]],"color":"#56CCF2","width":null,"r":0,"name":"","dash":null,"cross":null,"numShape":""}],"stations":[{"id":2,"kind":"hub","x":1205,"y":785,"ang":0,"lanes":1,"text":"奏壌","pos":"top","vert":true,"autoLabel":false,"align":"center","nums":{},"lanesX":1,"lanesY":1,"alignX":"center","alignY":"center"},{"id":3,"kind":"hub","x":1422.5,"y":785,"ang":0,"lanes":2,"text":"なな諸島","pos":"top","vert":false,"autoLabel":false,"align":"end","nums":{},"lanesX":3,"lanesY":1,"alignX":"center","alignY":"center"},{"id":4,"kind":"st","x":1732.5,"y":785,"ang":90,"lanes":1,"text":"卯之原","pos":"top","vert":true,"autoLabel":false,"align":"center","nums":{}},{"id":5,"kind":"hub","x":2000,"y":805,"ang":0,"lanes":2,"text":"潮川","pos":"top","vert":true,"autoLabel":false,"align":"center","nums":{},"lanesX":1,"lanesY":2,"alignX":"center","alignY":"center"},{"id":6,"kind":"hub","x":2755,"y":825,"ang":0,"lanes":1,"text":"紅葉台","pos":"bottom","vert":false,"autoLabel":true,"align":"center","nums":{},"lanesX":1,"lanesY":1,"alignX":"center","alignY":"center"},{"id":7,"kind":"st","x":2097.5,"y":825,"ang":0,"lanes":1,"text":"西春戸","pos":"bottom","vert":false,"autoLabel":true,"align":"center","nums":{}},{"id":8,"kind":"hub","x":2230,"y":805,"ang":0,"lanes":2,"text":"春戸","pos":"bottom","vert":false,"autoLabel":true,"align":"center","nums":{},"lanesX":4,"lanesY":2,"alignX":"center","alignY":"center"},{"id":9,"kind":"st","x":2970,"y":825,"ang":0,"lanes":1,"text":"平野","pos":"bottom","vert":true,"autoLabel":true,"align":"center","nums":{}},{"id":10,"kind":"hub","x":2620,"y":825,"ang":0,"lanes":1,"text":"東春戸","pos":"bottom","vert":false,"autoLabel":true,"align":"center","nums":{},"lanesX":1,"lanesY":1,"alignX":"center","alignY":"center"},{"id":15,"kind":"st","x":2000,"y":672.5,"ang":90,"lanes":1,"text":"北潮川","pos":"right","vert":false,"autoLabel":true,"align":"center","nums":{}},{"id":16,"kind":"st","x":2000,"y":607.5,"ang":90,"lanes":1,"text":"背山新田","pos":"right","vert":false,"autoLabel":true,"align":"center","nums":{}},{"id":17,"kind":"st","x":2000,"y":542.5,"ang":90,"lanes":1,"text":"北背山","pos":"right","vert":false,"autoLabel":true,"align":"center","nums":{}},{"id":18,"kind":"st","x":2000,"y":477.5,"ang":90,"lanes":1,"text":"荒津","pos":"right","vert":false,"autoLabel":true,"align":"center","nums":{}},{"id":19,"kind":"st","x":2057.5,"y":410,"ang":0,"lanes":1,"text":"岳下","pos":"top","vert":true,"autoLabel":false,"align":"center","nums":{}},{"id":20,"kind":"st","x":1927.5,"y":410,"ang":0,"lanes":1,"text":"黒潮","pos":"bottom","vert":true,"autoLabel":false,"align":"center","nums":{}},{"id":23,"kind":"hub","x":2145,"y":330,"ang":90,"lanes":1,"text":"北林","pos":"top","vert":false,"autoLabel":false,"align":"center","nums":{},"lanesX":1,"lanesY":1,"alignX":"center","alignY":"center"},{"id":25,"kind":"st","x":1862.5,"y":410,"ang":0,"lanes":1,"text":"小木崎口","pos":"bottom","vert":true,"autoLabel":false,"align":"center","nums":{}},{"id":26,"kind":"st","x":1797.5,"y":410,"ang":0,"lanes":1,"text":"小木崎","pos":"bottom","vert":true,"autoLabel":false,"align":"center","nums":{}},{"id":27,"kind":"st","x":1732.5,"y":410,"ang":0,"lanes":1,"text":"北なな諸島","pos":"bottom","vert":true,"autoLabel":false,"align":"center","nums":{}},{"id":28,"kind":"st","x":1667.5,"y":410,"ang":0,"lanes":1,"text":"八瀬原","pos":"bottom","vert":true,"autoLabel":false,"align":"center","nums":{}},{"id":29,"kind":"st","x":1602.5,"y":410,"ang":0,"lanes":1,"text":"友倉","pos":"bottom","vert":true,"autoLabel":false,"align":"center","nums":{}},{"id":31,"kind":"st","x":1537.5,"y":410,"ang":0,"lanes":1,"text":"能登湖","pos":"bottom","vert":true,"autoLabel":true,"align":"center","nums":{}},{"id":32,"kind":"st","x":1407.5,"y":410,"ang":0,"lanes":3,"text":"岩羽","pos":"top","vert":true,"autoLabel":false,"align":"end","nums":{}},{"id":33,"kind":"st","x":1342.5,"y":410,"ang":0,"lanes":3,"text":"農協南","pos":"top","vert":true,"autoLabel":false,"align":"end","nums":{}},{"id":34,"kind":"st","x":1277.5,"y":430,"ang":0,"lanes":2,"text":"蛇川","pos":"bottom","vert":true,"autoLabel":false,"align":"center","nums":{}},{"id":35,"kind":"st","x":1205,"y":477.5,"ang":90,"lanes":1,"text":"西蛇川","pos":"left","vert":true,"autoLabel":false,"align":"center","nums":{}},{"id":36,"kind":"st","x":1205,"y":542.5,"ang":90,"lanes":1,"text":"熱砂","pos":"left","vert":false,"autoLabel":false,"align":"center","nums":{}},{"id":52,"kind":"st","x":1205,"y":607.5,"ang":90,"lanes":1,"text":"北奏町","pos":"left","vert":false,"autoLabel":false,"align":"end","nums":{}},{"id":53,"kind":"st","x":1205,"y":672.5,"ang":90,"lanes":1,"text":"奏壌北口","pos":"left","vert":false,"autoLabel":false,"align":"end","nums":{}},{"id":70,"kind":"st","x":2000,"y":1067.5,"ang":90,"lanes":1,"text":"黒沼口","pos":"right","vert":false,"autoLabel":false,"align":"end","nums":{}},{"id":71,"kind":"st","x":1960,"y":1132.5,"ang":90,"lanes":3,"text":"黒沼","pos":"left","vert":false,"autoLabel":false,"align":"end","nums":{}},{"id":72,"kind":"st","x":2000,"y":1197.5,"ang":90,"lanes":1,"text":"黒沼南","pos":"right","vert":false,"autoLabel":false,"align":"end","nums":{}},{"id":73,"kind":"st","x":2000,"y":1262.5,"ang":90,"lanes":1,"text":"南部橋","pos":"right","vert":false,"autoLabel":false,"align":"end","nums":{}},{"id":74,"kind":"st","x":2000,"y":1327.5,"ang":90,"lanes":1,"text":"西城西","pos":"left","vert":false,"autoLabel":false,"align":"end","nums":{}},{"id":75,"kind":"st","x":2020,"y":1392.5,"ang":90,"lanes":2,"text":"城西","pos":"left","vert":false,"autoLabel":false,"align":"end","nums":{}},{"id":76,"kind":"hub","x":2020,"y":1480,"ang":90,"lanes":1,"text":"吹雪","pos":"right","vert":false,"autoLabel":false,"align":"end","nums":{},"lanesX":2,"lanesY":3,"alignX":"center","alignY":"center"},{"id":79,"kind":"st","x":1920,"y":1067.5,"ang":90,"lanes":1,"text":"黒沼神社","pos":"right","vert":false,"autoLabel":true,"align":"end","nums":{}},{"id":80,"kind":"st","x":1920,"y":1002.5,"ang":90,"lanes":1,"text":"黒沼北口","pos":"left","vert":false,"autoLabel":false,"align":"end","nums":{}},{"id":81,"kind":"st","x":1920,"y":1197.5,"ang":90,"lanes":1,"text":"黒沼南口","pos":"left","vert":false,"autoLabel":false,"align":"end","nums":{}},{"id":84,"kind":"st","x":1922.5,"y":1560,"ang":0,"lanes":1,"text":"養蜂林園","pos":"bottom","vert":true,"autoLabel":true,"align":"end","nums":{}},{"id":85,"kind":"st","x":1857.5,"y":1560,"ang":0,"lanes":1,"text":"中之島","pos":"bottom","vert":true,"autoLabel":true,"align":"end","nums":{}},{"id":94,"kind":"st","x":2290,"y":1127.5,"ang":90,"lanes":1,"text":"La.Isatol","pos":"left","vert":false,"autoLabel":false,"align":"end","nums":{}},{"id":95,"kind":"hub","x":2290,"y":1055,"ang":90,"lanes":1,"text":"梅雨戸","pos":"right","vert":false,"autoLabel":false,"align":"end","nums":{},"lanesX":1,"lanesY":1,"alignX":"center","alignY":"center"},{"id":96,"kind":"hub","x":2270,"y":1200,"ang":90,"lanes":1,"text":"晴坂山王","pos":"right","vert":false,"autoLabel":true,"align":"end","nums":{},"lanesX":2,"lanesY":1,"alignX":"end","alignY":"center"},{"id":97,"kind":"st","x":2482.5,"y":1270,"ang":0,"lanes":1,"text":"元夏戸","pos":"top","vert":true,"autoLabel":false,"align":"end","nums":{}},{"id":98,"kind":"st","x":2682.5,"y":1270,"ang":0,"lanes":1,"text":"東夏戸","pos":"top","vert":true,"autoLabel":false,"align":"end","nums":{}},{"id":99,"kind":"hub","x":2755,"y":1270,"ang":90,"lanes":1,"text":"夏戸","pos":"bottom","vert":true,"autoLabel":true,"align":"end","nums":{},"lanesX":1,"lanesY":1,"alignX":"center","alignY":"center"},{"id":102,"kind":"st","x":2250,"y":1272.5,"ang":90,"lanes":1,"text":"甘傘","pos":"left","vert":false,"autoLabel":false,"align":"end","nums":{}},{"id":103,"kind":"st","x":2250,"y":1337.5,"ang":90,"lanes":1,"text":"宮廷前","pos":"left","vert":false,"autoLabel":false,"align":"end","nums":{}},{"id":107,"kind":"hub","x":2000,"y":945,"ang":90,"lanes":1,"text":"東緑野","pos":"right","vert":false,"autoLabel":true,"align":"end","nums":{},"lanesX":1,"lanesY":1,"alignX":"center","alignY":"center"},{"id":110,"kind":"st","x":1732.5,"y":850,"ang":90,"lanes":1,"text":"坑口","pos":"right","vert":false,"autoLabel":false,"align":"end","nums":{}},{"id":112,"kind":"hub","x":1732.5,"y":945,"ang":0,"lanes":1,"text":"黒森峰","pos":"right","vert":false,"autoLabel":true,"align":"end","nums":{},"lanesX":1,"lanesY":1,"alignX":"center","alignY":"center"},{"id":115,"kind":"st","x":2112.5,"y":945,"ang":0,"lanes":1,"text":"芦川","pos":"bottom","vert":false,"autoLabel":true,"align":"end","nums":{}},{"id":116,"kind":"st","x":2190,"y":897.5,"ang":90,"lanes":2,"text":"芦川ゲートウェイ","pos":"bottom","vert":true,"autoLabel":false,"align":"end","nums":{}},{"id":119,"kind":"st","x":1887.5,"y":945,"ang":0,"lanes":1,"text":"緑野","pos":"top","vert":false,"autoLabel":false,"align":"end","nums":{}},{"id":120,"kind":"st","x":1620,"y":945,"ang":0,"lanes":1,"text":"西黒森","pos":"top","vert":false,"autoLabel":false,"align":"end","nums":{}},{"id":122,"kind":"hub","x":1490,"y":925,"ang":0,"lanes":2,"text":"龍ケ島","pos":"bottom","vert":true,"autoLabel":true,"align":"end","nums":{},"lanesX":1,"lanesY":2,"alignX":"center","alignY":"end"},{"id":123,"kind":"st","x":1425,"y":925,"ang":0,"lanes":2,"text":"令和島","pos":"bottom","vert":true,"autoLabel":true,"align":"end","nums":{}},{"id":124,"kind":"st","x":1360,"y":945,"ang":0,"lanes":1,"text":"梅浜台","pos":"bottom","vert":true,"autoLabel":true,"align":"end","nums":{}},{"id":125,"kind":"st","x":1295,"y":945,"ang":0,"lanes":1,"text":"口岸(柴山)","pos":"bottom","vert":true,"autoLabel":false,"align":"end","nums":{}},{"id":126,"kind":"st","x":1205,"y":922.5,"ang":90,"lanes":1,"text":"幌市","pos":"left","vert":true,"autoLabel":false,"align":"end","nums":{}},{"id":127,"kind":"st","x":1205,"y":857.5,"ang":90,"lanes":1,"text":"森久保","pos":"left","vert":true,"autoLabel":false,"align":"end","nums":{}},{"id":134,"kind":"st","x":1530,"y":1025,"ang":90,"lanes":1,"text":"東龍ヶ島","pos":"right","vert":false,"autoLabel":false,"align":"end","nums":{}},{"id":135,"kind":"hub","x":1490,"y":1170,"ang":90,"lanes":1,"text":"アスレチック","pos":"right","vert":false,"autoLabel":true,"align":"end","nums":{},"lanesX":3,"lanesY":1,"alignX":"center","alignY":"center"},{"id":136,"kind":"st","x":1377.5,"y":1170,"ang":0,"lanes":1,"text":"新瀧島","pos":"bottom","vert":true,"autoLabel":true,"align":"end","nums":{}},{"id":137,"kind":"st","x":1312.5,"y":1170,"ang":0,"lanes":1,"text":"珊瑚","pos":"bottom","vert":true,"autoLabel":true,"align":"end","nums":{}},{"id":138,"kind":"st","x":1247.5,"y":1170,"ang":0,"lanes":1,"text":"卯月","pos":"bottom","vert":true,"autoLabel":true,"align":"end","nums":{}},{"id":139,"kind":"st","x":1185,"y":1170,"ang":0,"lanes":1,"text":"如月","pos":"bottom","vert":true,"autoLabel":true,"align":"end","nums":{}},{"id":141,"kind":"st","x":1490,"y":1242.5,"ang":90,"lanes":1,"text":"シーラント","pos":"right","vert":false,"autoLabel":true,"align":"end","nums":{}},{"id":149,"kind":"hub","x":1735,"y":1480,"ang":0,"lanes":1,"text":"江西","pos":"bottom","vert":false,"autoLabel":true,"align":"end","nums":{},"lanesX":1,"lanesY":3,"alignX":"center","alignY":"center"},{"id":151,"kind":"st","x":1602.5,"y":1480,"ang":0,"lanes":1,"text":"龍重古","pos":"bottom","vert":true,"autoLabel":true,"align":"end","nums":{}},{"id":153,"kind":"st","x":1807.5,"y":1440,"ang":0,"lanes":1,"text":"南部","pos":"top","vert":true,"autoLabel":false,"align":"end","nums":{}},{"id":155,"kind":"st","x":1695,"y":1562.5,"ang":90,"lanes":1,"text":"砂堀","pos":"right","vert":false,"autoLabel":true,"align":"end","nums":{}},{"id":156,"kind":"st","x":1695,"y":1627.5,"ang":90,"lanes":1,"text":"迅帝","pos":"right","vert":false,"autoLabel":true,"align":"end","nums":{}},{"id":157,"kind":"st","x":1695,"y":1692.5,"ang":90,"lanes":1,"text":"西大南","pos":"right","vert":false,"autoLabel":true,"align":"end","nums":{}},{"id":158,"kind":"hub","x":1675,"y":1750,"ang":90,"lanes":1,"text":"山野","pos":"right","vert":false,"autoLabel":true,"align":"end","nums":{},"lanesX":2,"lanesY":1,"alignX":"end","alignY":"center"},{"id":161,"kind":"st","x":1735,"y":1887.5,"ang":0,"lanes":1,"text":"緑砂","pos":"top","vert":true,"autoLabel":false,"align":"end","nums":{}},{"id":165,"kind":"st","x":1600,"y":1830,"ang":0,"lanes":1,"text":"兎足","pos":"bottom","vert":true,"autoLabel":true,"align":"end","nums":{}},{"id":166,"kind":"st","x":1535,"y":1830,"ang":0,"lanes":1,"text":"滑園","pos":"bottom","vert":true,"autoLabel":true,"align":"end","nums":{}},{"id":183,"kind":"st","x":2600,"y":487.5,"ang":90,"lanes":2,"text":"山野川","pos":"right","vert":false,"autoLabel":false,"align":"start","nums":{}},{"id":184,"kind":"st","x":2600,"y":422.5,"ang":90,"lanes":2,"text":"二門","pos":"right","vert":false,"autoLabel":false,"align":"start","nums":{}},{"id":188,"kind":"st","x":2112.5,"y":1480,"ang":0,"lanes":1,"text":"吹雪祭り会場","pos":"bottom","vert":true,"autoLabel":true,"align":"end","nums":{}},{"id":189,"kind":"st","x":2682.5,"y":1460,"ang":0,"lanes":2,"text":"秋戸","pos":"bottom","vert":true,"autoLabel":true,"align":"end","nums":{}},{"id":191,"kind":"st","x":2170,"y":712.5,"ang":90,"lanes":1,"text":"冬戸","pos":"left","vert":false,"autoLabel":false,"align":"end","nums":{}},{"id":193,"kind":"st","x":2217.5,"y":330,"ang":0,"lanes":1,"text":"玉屋野","pos":"top","vert":true,"autoLabel":false,"align":"end","nums":{}},{"id":194,"kind":"st","x":2282.5,"y":330,"ang":0,"lanes":1,"text":"雄池","pos":"top","vert":true,"autoLabel":false,"align":"end","nums":{}},{"id":195,"kind":"st","x":2347.5,"y":330,"ang":0,"lanes":1,"text":"森間","pos":"top","vert":true,"autoLabel":false,"align":"end","nums":{}},{"id":196,"kind":"st","x":2752.5,"y":370,"ang":0,"lanes":1,"text":"屋松","pos":"top","vert":true,"autoLabel":false,"align":"end","nums":{}},{"id":197,"kind":"st","x":2970,"y":370,"ang":0,"lanes":1,"text":"玉子浦","pos":"bottom","vert":true,"autoLabel":true,"align":"end","nums":{}},{"id":198,"kind":"st","x":2432.5,"y":555,"ang":0,"lanes":1,"text":"冬戸城","pos":"top","vert":true,"autoLabel":false,"align":"end","nums":{}},{"id":199,"kind":"st","x":2367.5,"y":555,"ang":0,"lanes":1,"text":"片平新町","pos":"top","vert":true,"autoLabel":false,"align":"end","nums":{}},{"id":200,"kind":"st","x":2302.5,"y":555,"ang":0,"lanes":1,"text":"出葉台下","pos":"top","vert":true,"autoLabel":false,"align":"end","nums":{}},{"id":201,"kind":"st","x":2620,"y":617.5,"ang":90,"lanes":1,"text":"下柚木","pos":"right","vert":false,"autoLabel":true,"align":"center","nums":{}},{"id":202,"kind":"st","x":2620,"y":552.5,"ang":90,"lanes":1,"text":"新千鳥","pos":"right","vert":false,"autoLabel":true,"align":"center","nums":{}},{"id":203,"kind":"hub","x":2620,"y":690,"ang":0,"lanes":1,"text":"しせらげ村","pos":"right","vert":false,"autoLabel":true,"align":"center","nums":{},"lanesX":1,"lanesY":1,"alignX":"center","alignY":"center"},{"id":205,"kind":"hub","x":2755,"y":985,"ang":90,"lanes":1,"text":"境沢","pos":"right","vert":false,"autoLabel":true,"align":"start","nums":{},"lanesX":1,"lanesY":1,"alignX":"center","alignY":"center"},{"id":206,"kind":"hub","x":2755,"y":1055,"ang":90,"lanes":1,"text":"堀水","pos":"right","vert":false,"autoLabel":true,"align":"start","nums":{},"lanesX":1,"lanesY":1,"alignX":"center","alignY":"center"},{"id":207,"kind":"st","x":2755,"y":752.5,"ang":90,"lanes":1,"text":"出海台","pos":"right","vert":false,"autoLabel":true,"align":"start","nums":{}},{"id":212,"kind":"st","x":2975,"y":1055,"ang":0,"lanes":1,"text":"南平野","pos":"bottom","vert":true,"autoLabel":true,"align":"start","nums":{}},{"id":214,"kind":"st","x":2482.5,"y":1055,"ang":0,"lanes":1,"text":"天野原湧川","pos":"bottom","vert":false,"autoLabel":false,"align":"start","nums":{}},{"id":217,"kind":"st","x":2482.5,"y":690,"ang":0,"lanes":1,"text":"夢叶台","pos":"top","vert":false,"autoLabel":false,"align":"start","nums":{}},{"id":218,"kind":"st","x":2367.5,"y":690,"ang":0,"lanes":1,"text":"北春戸","pos":"top","vert":false,"autoLabel":false,"align":"start","nums":{}},{"id":221,"kind":"st","x":2617.5,"y":985,"ang":0,"lanes":1,"text":"湧川","pos":"top","vert":false,"autoLabel":false,"align":"start","nums":{}},{"id":222,"kind":"st","x":2482.5,"y":985,"ang":0,"lanes":1,"text":"天野原","pos":"top","vert":false,"autoLabel":false,"align":"start","nums":{}},{"id":224,"kind":"st","x":2410,"y":957.5,"ang":90,"lanes":1,"text":"農協前","pos":"left","vert":false,"autoLabel":false,"align":"start","nums":{}},{"id":225,"kind":"st","x":2410,"y":892.5,"ang":90,"lanes":1,"text":"植林場前","pos":"left","vert":false,"autoLabel":false,"align":"start","nums":{}},{"id":226,"kind":"st","x":2367.5,"y":745,"ang":0,"lanes":1,"text":"高徳平","pos":"bottom","vert":false,"autoLabel":true,"align":"start","nums":{}},{"id":232,"kind":"st","x":2482.5,"y":745,"ang":0,"lanes":1,"text":"新井橋","pos":"bottom","vert":false,"autoLabel":false,"align":"start","nums":{}},{"id":233,"kind":"st","x":2755,"y":1127.5,"ang":90,"lanes":1,"text":"節山","pos":"right","vert":false,"autoLabel":true,"align":"start","nums":{}},{"id":234,"kind":"st","x":2755,"y":1192.5,"ang":90,"lanes":1,"text":"北夏戸","pos":"right","vert":false,"autoLabel":true,"align":"start","nums":{}},{"id":238,"kind":"st","x":2975,"y":1480,"ang":0,"lanes":1,"text":"扇浜","pos":"bottom","vert":true,"autoLabel":true,"align":"start","nums":{}}],"texts":[{"id":170,"x":1170,"y":1900,"text":"乗り換え案内用に調整されています","size":null,"color":null}],"table":[],"seq":242};
 function demoState(){return normalize(JSON.parse(JSON.stringify(DEFAULT_PROJECT)));}
 const nid=()=>state.seq++;
 const getL=id=>state.lines.find(o=>o.id===id);
@@ -848,9 +861,26 @@ function numEntries(s,st){
   out.sort((x,y)=>x.order-y.order);
   return out;
 }
+// 駅番号の配置。between=駅と駅名の間 / inside=駅の中（通常駅のみ・枠なし） / left,right,top,bottom=駅の左右上下
+//  駅名と同じ側を選んだときは「駅と駅名の間」になる。ハブ駅の「駅の中」は「駅と駅名の間（=右）」として扱う
+function numMode(s,S,lp){
+  let m=s.numPos||S.numPos||'between';
+  if(m==='inside'&&s.kind==='hub')m='between';
+  const hasLabel=s.kind!=='hub'&&!!s.text&&!!lp&&lp!=='none';
+  if(m==='inside')return {mode:'inside'};
+  if(m==='between')return {mode:'between',side:hasLabel?lp:'right'};
+  if(hasLabel&&m===lp)return {mode:'between',side:lp};
+  return {mode:'side',side:m};
+}
 function labelGapFor(s,S,pos){
   let extra=0;
-  if(pos==='right'&&s.nums)for(const e of numEntries(s,state))extra+=numBadgeW(S,e.text)+S.labelGap;
+  if(s.nums){
+    const es=numEntries(s,state);
+    if(es.length&&numMode(s,S,pos).mode==='between'){
+      if(pos==='right'||pos==='left')for(const e of es)extra+=numBadgeW(S,e.text)+S.labelGap;
+      else extra=numBadgeD(S)+S.labelGap;
+    }
+  }
   return S.labelGap+extra;
 }
 function labelBBox(s,S,pos){
@@ -1042,22 +1072,46 @@ function stationLineColor(s,st){
   return best;
 }
 function numberBadges(st){
-  const S=st.s,out=[],posMap=effectivePos(st),d=numBadgeD(S);
+  const S=st.s,out=[],posMap=effectivePos(st),d=numBadgeD(S),g=S.labelGap;
   for(const s of st.stations){
     const es=numEntries(s,st);
     if(!es.length)continue;
-    let edge,y;
-    const lbb=s.kind!=='hub'?labelBBox(s,S,posMap.get(s.id)):null;
-    if(lbb){edge=lbb[0];y=(lbb[1]+lbb[3])/2;}
-    else{const g=geom(s,S),bb=rotBB(s.x,s.y,g.w,g.h,g.rot);edge=bb[0];y=s.y;}
-    let right=edge-S.labelGap;
-    for(const e of es){
-      const w=numBadgeW(S,e.text);
-      out.push({x:right-w/2,y,text:e.text,color:(e.L&&e.L.color)||S.lineColor,w,d,shape:(e.L&&e.L.numShape)||S.numShape});
-      right-=w+S.labelGap;
+    const nm=numMode(s,S,s.kind==='hub'?null:posMap.get(s.id));
+    if(nm.mode==='inside')continue;
+    const gm=geom(s,S),mb=rotBB(s.x,s.y,gm.w,gm.h,gm.rot);
+    const ws=es.map(e=>numBadgeW(S,e.text)),tot=ws.reduce((a,w)=>a+w,0)+g*(es.length-1);
+    const mk=(e,w,x,y)=>out.push({x,y,text:e.text,color:(e.L&&e.L.color)||S.lineColor,w,d,shape:(e.L&&e.L.numShape)||S.numShape});
+    if(nm.side==='right'||nm.side==='left'){
+      let x=nm.side==='right'?mb[2]+g:mb[0]-g-tot;
+      es.forEach((e,i)=>{mk(e,ws[i],x+ws[i]/2,s.y);x+=ws[i]+g;});
+    }else{
+      const y=nm.side==='bottom'?mb[3]+g+d/2:mb[1]-g-d/2;
+      let x=s.x-tot/2;
+      es.forEach((e,i)=>{mk(e,ws[i],x+ws[i]/2,y);x+=ws[i]+g;});
     }
   }
   return out;
+}
+// 駅の中に駅番号を入れる（通常駅。駅そのものが枠になるので、囲いは使わない）。収まるよう文字を縮め、必要なら英字と数字を2行に分ける
+function numInsidePrims(s,es,S,P){
+  const g=geom(s,S),ang=((Math.round(g.rot||0)%180)+180)%180,pad=S.stStroke+1.5;
+  let iw,ih;
+  if(ang===0){iw=g.w-2*pad;ih=g.h-2*pad;}
+  else if(ang===90){iw=g.h-2*pad;ih=g.w-2*pad;}
+  else{iw=ih=Math.min(g.w,g.h)*0.62;}
+  const unit=t=>measure(t,100)/100;
+  const A=es.map(e=>[{e,t:e.text}]);
+  const B=es.map(e=>{const m=/^(\D+)(\d.*)$/.exec(e.text);return m?[{e,t:m[1]},{e,t:m[2]}]:[{e,t:e.text}];});
+  let best=null;
+  for(const lay of [A,B]){
+    const lines=lay.flat(),mw=Math.max(...lines.map(l=>unit(l.t))),sz=Math.max(3,Math.min(S.labelSize,iw/mw,ih/(lines.length*1.05)));
+    if(!best||sz>best.sz+0.01)best={lines,sz};
+  }
+  const sz=best.sz,lh=sz*1.05,y0=s.y-lh*best.lines.length/2+lh/2;
+  best.lines.forEach((l,i)=>{
+    const y=y0+i*lh,w=measure(l.t,sz);
+    P.push({t:'tx',x:s.x,y,s:l.t,size:sz,c:(l.e.L&&l.e.L.color)||S.lineColor,anchor:'middle',sx:1,rot:0,o:{k:'st',id:s.id},bb:[s.x-w/2,y-sz/2,s.x+w/2,y+sz/2]});
+  });
 }
 // 他の路線を跨ぐ箇所。区間ごとに「なし／橋／弧」を決める（区間の設定が上を跨ぐ側。両方に設定があれば後から引いた路線が手前）
 //  橋: 下を通る路線を、交差部分で途切れさせる　弧: 手前の路線が ⌒ の形で跨ぐ　駅・ハブ駅の近くの交差は乗換なので対象外
@@ -1124,6 +1178,11 @@ function build(st){
   for(const s of st.stations)if(s.kind!=='hub')pillPrims(s,S,P);
   for(const s of st.stations)if(s.kind==='hub')pillPrims(s,S,P);
   const posMap=effectivePos(st);
+  for(const s of st.stations){
+    if(s.kind==='hub'||!s.nums)continue;
+    const es=numEntries(s,st);
+    if(es.length&&numMode(s,S,posMap.get(s.id)).mode==='inside')numInsidePrims(s,es,S,P);
+  }
   for(const s of st.stations)labelPrims(s,S,P,posMap.get(s.id));
   for(const tag of (SHOW_LINE_TAGS?lineTags(st):[])){
     const tagSize=14,padX=8,padY=4,tw=measure(tag.text,tagSize),w=tw+padX*2,h=tagSize+padY*2;
@@ -1706,6 +1765,12 @@ function resize(){
 function fit(){
   const {W,H}=sizeOf(),B=bounds(build(),state.s);
   if(!B){view={x:W/2-160,y:H/2-100,k:1};return;}
+  const pad=Math.min(48,W/8),k=clamp(Math.min((W-pad*2)/B.w,(H-pad*2)/B.h),0.15,2);
+  view.k=k;view.x=(W-B.w*k)/2-B.x*k;view.y=(H-B.h*k)/2-B.y*k;
+}
+function fitContent(){
+  const {W,H}=sizeOf(),B=bounds(build(),Object.assign({},state.s,{canvasFixed:false,margin:Math.max(state.s.margin||0,state.s.stH)}));
+  if(!B)return fit();
   const pad=Math.min(48,W/8),k=clamp(Math.min((W-pad*2)/B.w,(H-pad*2)/B.h),0.15,2);
   view.k=k;view.x=(W-B.w*k)/2-B.x*k;view.y=(H-B.h*k)/2-B.y*k;
 }
@@ -2382,6 +2447,8 @@ const fld=(l,i)=>'<label class="fld"><span>'+l+'</span>'+i+'</label>';
 const inNum=(a,v,o)=>{o=o||{};return '<input type="number" data-a="'+a+'" value="'+(v==null?'':r2(v))+'" step="'+(o.step||1)+'"'+(o.min!=null?' min="'+o.min+'"':'')+(o.max!=null?' max="'+o.max+'"':'')+(o.ph?' placeholder="'+esc(o.ph)+'"':'')+' inputmode="decimal">';};
 const inTxt=(a,v,o)=>{o=o||{};return '<input type="text" data-a="'+a+'" value="'+esc(v)+'"'+(o.ph?' placeholder="'+esc(o.ph)+'"':'')+' autocomplete="off" spellcheck="false">';};
 const inCol=(a,v)=>'<input type="color" data-a="'+a+'" value="'+esc(/^#[0-9a-f]{6}$/i.test(v)?v:'#000000')+'">';
+const inSel=(a,opts,cur)=>'<select data-a="'+a+'">'+opts.map(([v,l])=>'<option value="'+v+'"'+(String(v)===String(cur)?' selected':'')+'>'+l+'</option>').join('')+'</select>';
+const NUMPOS_LABEL={between:'駅と駅名の間',inside:'駅の中（通常駅のみ・枠なし）',left:'駅の左',right:'駅の右',top:'駅の上',bottom:'駅の下'};
 const inSeg=(a,opts,cur,numeric)=>'<div class="seg" role="group">'+opts.map(([v,l])=>'<button type="button" data-a="'+a+'" data-v="'+v+'"'+(numeric?' data-t="n"':'')+' aria-pressed="'+(String(v)===String(cur))+'">'+l+'</button>').join('')+'</div>';
 const inChk=(a,v,l)=>'<label class="chk"><input type="checkbox" data-a="'+a+'"'+(v?' checked':'')+'> '+l+'</label>';
 const swatchRows=(cur,attr)=>{
@@ -2417,6 +2484,9 @@ function stSection(s){
     if(ls.length){
       for(const L of ls)h+='<div class="row"><label class="lnlab"><i class="chip" style="background:'+esc(L.color||S.lineColor)+'"></i><span>'+esc(lineLabel(L))+'</span></label>'+inTxt('stnum.'+L.id,nm[L.id]||'',{ph:'例: A01'})+'</div>';
     }else h+='<div class="row"><label>番号</label>'+inTxt('stnum.0',nm['0']||'',{ph:'例: A01'})+'</div>';
+    const keys=NUMPOS_KEYS.filter(k=>!(hub&&k==='inside'));
+    h+='<div class="row"><label>番号の位置</label>'+inSel('st.numPos',[['','既定（'+NUMPOS_LABEL[S.numPos||'between']+'）']].concat(keys.map(k=>[k,NUMPOS_LABEL[k]])),s.numPos||'')+'</div>';
+    h+='<p class="note" style="margin:0 0 8px">「駅の中」は駅そのものに番号を入れます（囲みなし）。駅名と同じ側を選ぶと「駅と駅名の間」になります。</p>';
   }
   if(hub){
     const l=hubLanes(s);
@@ -2500,7 +2570,7 @@ function settingsHTML(){
     +colorField('S.labelColor','ラベル文字色',S.labelColor)
     +colorField('S.hubColor','ハブ駅の色',S.hubColor)
     +colorField('S.hubText','ハブ駅の文字色',S.hubText));
-  h+=grp('num','駅番号の枠（既定）','<div class="row"><label>形</label>'+inSeg('S.numShape',[['circle','円'],['square','四角']],S.numShape)+'</div><p class="note" style="margin-top:8px">駅番号は駅ごと・路線ごとに入力します。枠は路線の色で、路線ごとに形を変えることもできます。</p>');
+  h+=grp('num','駅番号（既定）','<div class="row"><label>枠の形</label>'+inSeg('S.numShape',[['circle','円'],['square','四角']],S.numShape)+'</div><div class="row"><label>位置</label>'+inSel('S.numPos',NUMPOS_KEYS.map(k=>[k,NUMPOS_LABEL[k]]),S.numPos||'between')+'</div><p class="note" style="margin-top:8px">駅番号は駅ごと・路線ごとに入力します。枠は路線の色で、路線ごとに形を変えることもできます。位置は駅ごとにも変えられます。</p>');
   return h;
 }
 function renderInspector(){
@@ -2575,6 +2645,11 @@ function setField(path,val){
     requestRender();return;
   }
   if(sc==='S'){
+    if(key==='format'){
+      const f=FORMATS[val]?val:'standard';
+      state.s.format=f;state.s.grid=FORMATS[f].grid;applyScale(state.s);
+      requestRender();return;
+    }
     if(key==='scale'){
       if(!Number.isFinite(val))return;
       state.s.scale=val/100;applyScale(state.s);requestRender();return;
@@ -2628,7 +2703,7 @@ insp.addEventListener('click',e=>{
     if(a==='del')deleteSel();
     else if(a==='dup')duplicateSel();
     else if(a==='linecolor'){const o=singleSel();if(o&&o.k==='line'){o.obj.color=null;commit();renderInspector();requestRender();}}
-    else if(a==='resetfmt'){const cw=state.s.canvasFixed,fw=state.s.canvasW,fh=state.s.canvasH;state.s=Object.assign({},FORMAT,{canvasFixed:cw,canvasW:fw,canvasH:fh});commit();renderInspector();requestRender();toast('フォーマットを初期値に戻しました');}
+    else if(a==='resetfmt'){const cw=state.s.canvasFixed,fw=state.s.canvasW,fh=state.s.canvasH;const fm=state.s.format;state.s=Object.assign({},FORMAT,{format:fm,canvasFixed:cw,canvasW:fw,canvasH:fh});state.s.grid=FORMATS[fm].grid;applyScale(state.s);commit();renderInspector();requestRender();toast('フォーマットを初期値に戻しました');}
     else if(a==='segall'){selSeg=null;selVi=-1;selWhole=true;onSelChange();}
     else if(a==='ptdel'){const o=singleSel();if(o&&o.k==='line'&&selVi>=0&&o.obj.pts.length>2){removeVertex(o.obj,selVi);selVi=-1;selSeg=null;commit();onSelChange();requestRender();}}
     else if(a==='autolabel'){const o=singleSel();if(o&&o.k==='st'){o.obj.autoLabel=true;commit();renderInspector();requestRender();}}
@@ -2905,10 +2980,10 @@ function generateFromTable(dir){
       existingByName.set(p.name,stObj);
       touched.add('st:'+stObj.id);
     }
-    laneCross+=LANE_Y;
+    laneCross+=LANE_Y*(S.stH/BASE_STD.stH);
   }
   sel=touched;selVi=-1;selSeg=null;selWhole=true;
-  commit();fit();onSelChange();
+  commit();(state.s.canvasFixed?fitContent:fit)();onSelChange();
   toast('生成しました（元に戻すにはCtrl+Z）');
 }
 const dlgDir=$('#dlgDir');
@@ -2925,12 +3000,14 @@ $('#dlgExt').addEventListener('close',()=>{if(pendingStart&&!pendingStart.done)r
 
 /* ================= wiring ================= */
 $$('.tool').forEach(b=>b.addEventListener('click',()=>setTool(b.dataset.tool)));
-function newBlank(){
-  const S=state.s;
+function newBlank(fmt){
+  const S=Object.assign({},state.s);
+  S.format=FORMATS[fmt]?fmt:'standard';S.grid=FORMATS[S.format].grid;applyScale(S);
   state=fresh();state.s=S;
   state.s.canvasFixed=true;state.s.canvasW=1920;state.s.canvasH=1080;
   sel=new Set();selVi=-1;selSeg=null;selWhole=false;drawing=null;
-  commit();fit();onSelChange();updateProjName();toast('白紙を作成しました（台紙 1920×1080）');
+  commit();fit();onSelChange();updateProjName();
+  toast('白紙を作成しました（'+FORMATS[S.format].name+'・台紙 1920×1080）');
 }
 function loadSample(){state=demoState();sel=new Set();selVi=-1;selSeg=null;selWhole=false;drawing=null;commit();fit();onSelChange();updateProjName();toast('サンプルを開きました');}
 
@@ -2966,7 +3043,7 @@ function runCmd(c){
   switch(k){
     case 'save':saveProject();break;
     case 'open':$('#openPick').click();break;
-    case 'new':newBlank();break;
+    case 'new':newBlank(a);break;
     case 'sample':loadSample();break;
     case 'table':openTable();break;
     case 'data':openData();break;
@@ -3001,7 +3078,7 @@ document.addEventListener('click',e=>{
 const MENUS=[
   {label:'ファイル',items:[
     {t:'保存',c:'save',k:'Ctrl+S'},{t:'開く…',c:'open'},'-',
-    {t:'新規作成（白紙）',c:'new'},{t:'サンプル',c:'sample'},'-',
+    {t:'新規作成（白紙・標準）',c:'new:standard'},{t:'新規作成（白紙・路面電車向け）',c:'new:tram'},{t:'サンプル',c:'sample'},'-',
     {t:'表から生成…',c:'table'},{t:'QRコードで転送…',c:'qr'},{t:'テキストで読込・コピー…',c:'data'},'-',
     {t:'出力…（PNG / SVG）',c:'export'}]},
   {label:'編集',items:[
@@ -3251,11 +3328,13 @@ document.addEventListener('paste',e=>{
 const dlgB=$('#dlgBoard'),boardBody=$('#boardBody');
 function renderBoard(){
   const S=state.s,bp=(k,label,v)=>'<label class="chk"><input type="checkbox" data-bp="'+k+'"'+(v?' checked':'')+'> '+label+'</label>';
-  let h='<section class="bsec"><h3>台紙サイズ</h3>'+inChk('S.canvasFixed',S.canvasFixed,'サイズを固定する')
+  let h='<section class="bsec"><h3>フォーマット</h3>'+inSeg('S.format',Object.keys(FORMATS).map(k=>[k,FORMATS[k].name]),S.format||'standard')
+    +'<p class="note">切り替えると、文字・駅・線の太さ・間隔の基準が変わります（置いた物の位置はそのままです）。路面電車など超近距離向けは、文字と駅を小さく、間隔を狭くしています。新しく作るときは「ファイル → 新規作成」からも選べます。</p></section>';
+  h+='<section class="bsec"><h3>台紙サイズ</h3>'+inChk('S.canvasFixed',S.canvasFixed,'サイズを固定する')
     +(S.canvasFixed?'<div class="g2">'+fld('幅',inNum('S.canvasW',S.canvasW,{min:10}))+fld('高さ',inNum('S.canvasH',S.canvasH,{min:10}))+'</div>':'<p class="note">内容に合わせて自動的に決まります。</p>')
     +'<div class="presets">'+[['Full HD 1920×1080',1920,1080],['HD 1280×720',1280,720],['4K 3840×2160',3840,2160],['正方形 1080×1080',1080,1080]].map(q=>'<button type="button" class="mini" data-bsize="'+q[1]+'x'+q[2]+'">'+q[0]+'</button>').join('')+'</div>'
     +'<p class="note">固定すると、この範囲の外は書き出しで切れます。</p></section>';
-  h+='<section class="bsec"><h3>全体サイズ</h3><div class="row" style="grid-template-columns:96px 1fr"><label>サイズ (%)</label>'+inNum('S.scale',Math.round(S.scale*100),{min:20,max:500,step:5})+'</div><p class="note">線の太さや駅・ラベルの大きさを、比率そのままに拡大縮小します。</p><div class="fonts"><span>英語</span><b style="font-family:Sen,sans-serif">Sen</b><span>日本語</span><b style="font-family:\'Sawarabi Gothic\',sans-serif">Sawarabi Gothic</b></div></section>';
+  h+='<section class="bsec"><h3>全体サイズ</h3><div class="row" style="grid-template-columns:96px 1fr"><label>サイズ (%)</label>'+inNum('S.scale',Math.round(S.scale*100),{min:20,max:500,step:5})+'</div><p class="note">選んだフォーマットの基準を、比率そのままに拡大縮小します。</p><div class="fonts"><span>英語</span><b style="font-family:Sen,sans-serif">Sen</b><span>日本語</span><b style="font-family:\'Sawarabi Gothic\',sans-serif">Sawarabi Gothic</b></div></section>';
   h+='<section class="bsec"><h3>吸着・表示</h3>'+bp('snap','吸着する（Altを押しながら操作すると一時的に外せます）',snapOn)
     +'<div class="row" style="grid-template-columns:96px 1fr"><label>グリッド (px)</label><select data-a="S.grid" data-t="n">'+[1,2.5,5,10,20].map(v=>'<option value="'+v+'"'+(S.grid===v?' selected':'')+'>'+v+'</option>').join('')+'</select></div>'
     +bp('showGrid','グリッド表示（作業エリアの点）',prefs.showGrid)
@@ -3282,7 +3361,7 @@ boardBody.addEventListener('click',e=>{
 $('#boardClose').addEventListener('click',()=>hideDlg(dlgB));
 $('#boardReset').addEventListener('click',()=>{
   const cw=state.s.canvasFixed,fw=state.s.canvasW,fh=state.s.canvasH;
-  state.s=Object.assign({},FORMAT,{canvasFixed:cw,canvasW:fw,canvasH:fh});
+  const fm=state.s.format;state.s=Object.assign({},FORMAT,{format:fm,canvasFixed:cw,canvasW:fw,canvasH:fh});state.s.grid=FORMATS[fm].grid;applyScale(state.s);
   commit();renderBoard();renderInspector();requestRender();toast('フォーマットを初期値に戻しました');
 });
 
@@ -3328,7 +3407,7 @@ cv.addEventListener('wheel',onWheel,{passive:false});
   resize();fit();
   setTool('select');renderInspector();updateUndo();requestRender();
   if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{mcache.clear();calcCap();requestRender();}).catch(()=>{});
-  if(window.__RZ_TEST)window.__rz={get state(){return state;},get sel(){return sel;},get view(){return view;},render,build,bounds,exportCanvas,toSVG,snapStation,setTool,hitTest,fit,commit,undo,redo,measure,get capC(){return capC;},effectivePos,lineTags,lineNameSpots,numberBadges,stationLineColor,stationLanePoints,geom,snapLinePoint,changeLanes,changeHubLanes,anchorOffset,computeCrossings,stationLines,numEntries,latticeT,polyInfo,polyProject,polyAt,laneGuides,laneSnapPoint,hubLanes,applyScale,generateFromTable,get hist(){return hist;},normalize,demoState,loadJSON,runCmd,qrBuild,qrDraw,qrFeed,qrRx,b45enc,b45dec,crc32,openQR,labelBBox,get prefs(){return prefs;},openBoard,newBlank,setGuides,get guides(){return guides;}};
+  if(window.__RZ_TEST)window.__rz={get state(){return state;},get sel(){return sel;},get view(){return view;},render,build,bounds,exportCanvas,toSVG,snapStation,setTool,hitTest,fit,commit,undo,redo,measure,get capC(){return capC;},effectivePos,lineTags,lineNameSpots,numberBadges,stationLineColor,stationLanePoints,geom,snapLinePoint,changeLanes,changeHubLanes,anchorOffset,computeCrossings,stationLines,numEntries,numMode,latticeT,polyInfo,polyProject,polyAt,laneGuides,laneSnapPoint,hubLanes,applyScale,generateFromTable,get hist(){return hist;},normalize,demoState,loadJSON,runCmd,qrBuild,qrDraw,qrFeed,qrRx,b45enc,b45dec,crc32,openQR,labelBBox,get prefs(){return prefs;},openBoard,newBlank,setGuides,get guides(){return guides;}};
 })();
 
 })();
