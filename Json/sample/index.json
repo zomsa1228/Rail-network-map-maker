@@ -1,0 +1,25 @@
+{
+  "start": "rosenzu-project.json",
+  "samples": [
+    {
+      "title": "Ushiokawa（標準・大きな路線図）",
+      "file": "rosenzu-project.json",
+      "note": "起動したときに表示される内容と同じです"
+    },
+    {
+      "title": "距離モードの例（長距離・中距離・短距離）",
+      "file": "mode-demo.json",
+      "note": "同じ図の中で、路線ごとに駅間隔・駅マーカー・駅名の大きさが変わります"
+    },
+    {
+      "title": "機能デモ（標準フォーマット）",
+      "file": "feature-demo.json",
+      "note": "駅番号の位置、橋と弧の交差、点線、縦書きの例"
+    },
+    {
+      "title": "路面電車（小さめフォーマット）",
+      "file": "tram-sample.json",
+      "note": "文字と駅を小さく、間隔を狭くした例"
+    }
+  ]
+}

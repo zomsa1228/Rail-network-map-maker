@@ -1,0 +1,655 @@
+{
+ "v": 2,
+ "app": "2026.10.14",
+ "name": "",
+ "s": {
+  "format": "standard",
+  "numPos": "between",
+  "scale": 1,
+  "lineColor": "#808080",
+  "lineWidth": 10,
+  "laneGap": 40,
+  "stW": 25,
+  "stH": 40,
+  "stStroke": 3,
+  "stGap": 40,
+  "stInk": "#000000",
+  "stFill": "#ffffff",
+  "labelSize": 28.5,
+  "labelBox": 160,
+  "labelH": 40,
+  "labelGap": 20,
+  "labelColor": "#000000",
+  "hubW": 120,
+  "hubH": 40,
+  "hubSize": 24,
+  "hubColor": "#231815",
+  "hubText": "#ffffff",
+  "hubPad": 14,
+  "numShape": "square",
+  "grid": 5,
+  "bg": "#ffffff",
+  "transparent": false,
+  "margin": 10,
+  "canvasFixed": true,
+  "canvasW": 1920,
+  "canvasH": 1080
+ },
+ "lines": [
+  {
+   "id": 1,
+   "mode": "mid",
+   "k": null,
+   "z": 10,
+   "pts": [
+    [
+     160,
+     200
+    ],
+    [
+     1480,
+     200
+    ]
+   ],
+   "color": "#2D9CDB",
+   "width": null,
+   "r": 0,
+   "name": "A線",
+   "dash": null,
+   "cross": null,
+   "numShape": ""
+  },
+  {
+   "id": 2,
+   "mode": "mid",
+   "k": null,
+   "z": 20,
+   "pts": [
+    [
+     620,
+     60
+    ],
+    [
+     620,
+     760
+    ]
+   ],
+   "color": "#EB5757",
+   "width": null,
+   "r": 0,
+   "name": "B線",
+   "dash": null,
+   "cross": null,
+   "numShape": ""
+  },
+  {
+   "id": 3,
+   "mode": "mid",
+   "k": null,
+   "z": 30,
+   "pts": [
+    [
+     200,
+     520
+    ],
+    [
+     1500,
+     520
+    ]
+   ],
+   "color": "#27AE60",
+   "width": null,
+   "r": 0,
+   "name": "C線",
+   "dash": null,
+   "cross": [
+    "bridge"
+   ],
+   "numShape": ""
+  },
+  {
+   "id": 4,
+   "mode": "mid",
+   "k": null,
+   "z": 40,
+   "pts": [
+    [
+     1280,
+     100
+    ],
+    [
+     1280,
+     700
+    ]
+   ],
+   "color": "#F2994A",
+   "width": null,
+   "r": 0,
+   "name": "D線",
+   "dash": null,
+   "cross": [
+    "arc"
+   ],
+   "numShape": ""
+  },
+  {
+   "id": 5,
+   "mode": "mid",
+   "k": null,
+   "z": 50,
+   "pts": [
+    [
+     200,
+     900
+    ],
+    [
+     1700,
+     900
+    ]
+   ],
+   "color": "#9B51E0",
+   "width": null,
+   "r": 0,
+   "name": "E線",
+   "dash": null,
+   "cross": null,
+   "numShape": ""
+  }
+ ],
+ "stations": [
+  {
+   "id": 27,
+   "kind": "st",
+   "x": 160,
+   "y": 200,
+   "ang": 0,
+   "lanes": 1,
+   "text": "西端",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    1
+   ],
+   "numPos": "",
+   "nums": {
+    "1": "A01"
+   }
+  },
+  {
+   "id": 28,
+   "kind": "st",
+   "x": 355,
+   "y": 200,
+   "ang": 0,
+   "lanes": 1,
+   "text": "桜台",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    1
+   ],
+   "numPos": "",
+   "nums": {
+    "1": "A02"
+   }
+  },
+  {
+   "id": 29,
+   "kind": "st",
+   "x": 885,
+   "y": 200,
+   "ang": 0,
+   "lanes": 1,
+   "text": "港前",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    1
+   ],
+   "numPos": "",
+   "nums": {
+    "1": "A04"
+   }
+  },
+  {
+   "id": 30,
+   "kind": "st",
+   "x": 1480,
+   "y": 200,
+   "ang": 0,
+   "lanes": 1,
+   "text": "東端",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    1
+   ],
+   "numPos": "",
+   "nums": {
+    "1": "A05"
+   }
+  },
+  {
+   "id": 31,
+   "kind": "st",
+   "x": 620,
+   "y": 60,
+   "ang": 90,
+   "lanes": 1,
+   "text": "北口",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    2
+   ],
+   "numPos": "",
+   "nums": {
+    "2": "B01"
+   }
+  },
+  {
+   "id": 6,
+   "kind": "st",
+   "x": 620,
+   "y": 360,
+   "ang": 90,
+   "lanes": 1,
+   "text": "中央公園",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    2
+   ],
+   "numPos": "",
+   "nums": {
+    "2": "B03"
+   }
+  },
+  {
+   "id": 7,
+   "kind": "st",
+   "x": 620,
+   "y": 680,
+   "ang": 90,
+   "lanes": 1,
+   "text": "南町",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    2
+   ],
+   "numPos": "",
+   "nums": {
+    "2": "B04"
+   }
+  },
+  {
+   "id": 8,
+   "kind": "st",
+   "x": 620,
+   "y": 760,
+   "ang": 90,
+   "lanes": 1,
+   "text": "南口",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    2
+   ],
+   "numPos": "",
+   "nums": {
+    "2": "B05"
+   }
+  },
+  {
+   "id": 9,
+   "kind": "st",
+   "x": 200,
+   "y": 520,
+   "ang": 0,
+   "lanes": 1,
+   "text": "西口",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    3
+   ],
+   "numPos": "",
+   "nums": {
+    "3": "C01"
+   }
+  },
+  {
+   "id": 10,
+   "kind": "st",
+   "x": 420,
+   "y": 520,
+   "ang": 0,
+   "lanes": 1,
+   "text": "学園",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    3
+   ],
+   "numPos": "",
+   "nums": {
+    "3": "C02"
+   }
+  },
+  {
+   "id": 11,
+   "kind": "st",
+   "x": 820,
+   "y": 520,
+   "ang": 0,
+   "lanes": 1,
+   "text": "市場",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    3
+   ],
+   "numPos": "",
+   "nums": {
+    "3": "C03"
+   }
+  },
+  {
+   "id": 12,
+   "kind": "st",
+   "x": 1100,
+   "y": 520,
+   "ang": 0,
+   "lanes": 1,
+   "text": "駅前通り",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    3
+   ],
+   "numPos": "",
+   "nums": {
+    "3": "C04"
+   }
+  },
+  {
+   "id": 13,
+   "kind": "st",
+   "x": 1500,
+   "y": 520,
+   "ang": 0,
+   "lanes": 1,
+   "text": "東口",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    3
+   ],
+   "numPos": "",
+   "nums": {
+    "3": "C05"
+   }
+  },
+  {
+   "id": 14,
+   "kind": "st",
+   "x": 1280,
+   "y": 100,
+   "ang": 90,
+   "lanes": 1,
+   "text": "高台",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    4
+   ],
+   "numPos": "",
+   "nums": {
+    "4": "D01"
+   }
+  },
+  {
+   "id": 15,
+   "kind": "st",
+   "x": 1280,
+   "y": 700,
+   "ang": 90,
+   "lanes": 1,
+   "text": "山手",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    4
+   ],
+   "numPos": "",
+   "nums": {
+    "4": "D03"
+   }
+  },
+  {
+   "id": 16,
+   "kind": "st",
+   "x": 1280,
+   "y": 330,
+   "ang": 90,
+   "lanes": 1,
+   "text": "縦書き",
+   "pos": "right",
+   "vert": true,
+   "autoLabel": false,
+   "align": "center",
+   "lineIds": [
+    4
+   ],
+   "numPos": "",
+   "nums": {
+    "4": "D02"
+   }
+  },
+  {
+   "id": 17,
+   "kind": "hub",
+   "x": 620,
+   "y": 200,
+   "ang": 0,
+   "lanes": 1,
+   "text": "中央",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    1,
+    2
+   ],
+   "numPos": "",
+   "nums": {
+    "1": "A03",
+    "2": "B02"
+   },
+   "lanesX": 1,
+   "lanesY": 1,
+   "alignX": "center",
+   "alignY": "center"
+  },
+  {
+   "id": 18,
+   "kind": "st",
+   "x": 200,
+   "y": 900,
+   "ang": 0,
+   "lanes": 1,
+   "text": "番号:間",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    5
+   ],
+   "numPos": "between",
+   "nums": {
+    "5": "E01"
+   }
+  },
+  {
+   "id": 19,
+   "kind": "st",
+   "x": 500,
+   "y": 900,
+   "ang": 0,
+   "lanes": 1,
+   "text": "番号:中",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    5
+   ],
+   "numPos": "inside",
+   "nums": {
+    "5": "E02"
+   }
+  },
+  {
+   "id": 20,
+   "kind": "st",
+   "x": 800,
+   "y": 900,
+   "ang": 0,
+   "lanes": 1,
+   "text": "番号:左",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    5
+   ],
+   "numPos": "left",
+   "nums": {
+    "5": "E03"
+   }
+  },
+  {
+   "id": 21,
+   "kind": "st",
+   "x": 1100,
+   "y": 900,
+   "ang": 0,
+   "lanes": 1,
+   "text": "番号:右",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    5
+   ],
+   "numPos": "right",
+   "nums": {
+    "5": "E04"
+   }
+  },
+  {
+   "id": 22,
+   "kind": "st",
+   "x": 1400,
+   "y": 900,
+   "ang": 0,
+   "lanes": 1,
+   "text": "番号:上",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    5
+   ],
+   "numPos": "top",
+   "nums": {
+    "5": "E05"
+   }
+  },
+  {
+   "id": 23,
+   "kind": "st",
+   "x": 1700,
+   "y": 900,
+   "ang": 0,
+   "lanes": 1,
+   "text": "番号:下",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    5
+   ],
+   "numPos": "bottom",
+   "nums": {
+    "5": "E06"
+   }
+  }
+ ],
+ "texts": [
+  {
+   "id": 24,
+   "x": 480,
+   "y": 60,
+   "text": "機能デモ（標準フォーマット）",
+   "size": 40,
+   "color": null
+  },
+  {
+   "id": 25,
+   "x": 640,
+   "y": 440,
+   "text": "C線は橋、D線は弧で、他の路線を跨いでいます（区間ごとに選べます）",
+   "size": 28.5,
+   "color": null
+  },
+  {
+   "id": 26,
+   "x": 960,
+   "y": 800,
+   "text": "駅番号の位置: 駅と駅名の間／駅の中／左／右／上／下（駅名と同じ側は「間」になります）",
+   "size": 28.5,
+   "color": null
+  }
+ ],
+ "table": [],
+ "seq": 32
+}

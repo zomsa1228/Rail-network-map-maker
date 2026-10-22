@@ -1,0 +1,565 @@
+{
+ "v": 2,
+ "app": "2026.10.14",
+ "name": "",
+ "s": {
+  "format": "tram",
+  "numPos": "between",
+  "scale": 1,
+  "lineColor": "#808080",
+  "lineWidth": 6,
+  "laneGap": 22,
+  "stW": 14,
+  "stH": 22,
+  "stStroke": 2,
+  "stGap": 20,
+  "stInk": "#000000",
+  "stFill": "#ffffff",
+  "labelSize": 16,
+  "labelBox": 100,
+  "labelH": 24,
+  "labelGap": 12,
+  "labelColor": "#000000",
+  "hubW": 70,
+  "hubH": 24,
+  "hubSize": 14,
+  "hubColor": "#231815",
+  "hubText": "#ffffff",
+  "hubPad": 8,
+  "numShape": "square",
+  "grid": 2.5,
+  "bg": "#ffffff",
+  "transparent": false,
+  "margin": 10,
+  "canvasFixed": true,
+  "canvasW": 1280,
+  "canvasH": 720
+ },
+ "lines": [
+  {
+   "id": 1,
+   "mode": "mid",
+   "k": null,
+   "z": 10,
+   "pts": [
+    [
+     110,
+     230
+    ],
+    [
+     660,
+     230
+    ],
+    [
+     660,
+     440
+    ],
+    [
+     1124,
+     440
+    ]
+   ],
+   "color": "#EB5757",
+   "width": null,
+   "r": 0,
+   "name": "1系統",
+   "dash": null,
+   "cross": null,
+   "numShape": ""
+  },
+  {
+   "id": 2,
+   "mode": "mid",
+   "k": null,
+   "z": 20,
+   "pts": [
+    [
+     360,
+     80
+    ],
+    [
+     360,
+     692
+    ]
+   ],
+   "color": "#2D9CDB",
+   "width": null,
+   "r": 0,
+   "name": "2系統",
+   "dash": null,
+   "cross": null,
+   "numShape": ""
+  },
+  {
+   "id": 3,
+   "mode": "mid",
+   "k": null,
+   "z": 30,
+   "pts": [
+    [
+     880,
+     440
+    ],
+    [
+     880,
+     644
+    ]
+   ],
+   "color": "#27AE60",
+   "width": null,
+   "r": 0,
+   "name": "3系統",
+   "dash": [
+    1
+   ],
+   "cross": null,
+   "numShape": ""
+  }
+ ],
+ "stations": [
+  {
+   "id": 23,
+   "kind": "st",
+   "x": 110,
+   "y": 230,
+   "ang": 0,
+   "lanes": 1,
+   "text": "西町車庫",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    1
+   ],
+   "numPos": "",
+   "nums": {
+    "1": "A01"
+   }
+  },
+  {
+   "id": 24,
+   "kind": "st",
+   "x": 212,
+   "y": 230,
+   "ang": 0,
+   "lanes": 1,
+   "text": "桜通り",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    1
+   ],
+   "numPos": "",
+   "nums": {
+    "1": "A02"
+   }
+  },
+  {
+   "id": 25,
+   "kind": "st",
+   "x": 314,
+   "y": 230,
+   "ang": 0,
+   "lanes": 1,
+   "text": "市役所前",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    1
+   ],
+   "numPos": "",
+   "nums": {
+    "1": "A03"
+   }
+  },
+  {
+   "id": 4,
+   "kind": "st",
+   "x": 416,
+   "y": 230,
+   "ang": 0,
+   "lanes": 1,
+   "text": "本町",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    1
+   ],
+   "numPos": "",
+   "nums": {
+    "1": "A05"
+   }
+  },
+  {
+   "id": 5,
+   "kind": "st",
+   "x": 518,
+   "y": 230,
+   "ang": 0,
+   "lanes": 1,
+   "text": "公園前",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    1
+   ],
+   "numPos": "",
+   "nums": {
+    "1": "A06"
+   }
+  },
+  {
+   "id": 6,
+   "kind": "st",
+   "x": 620,
+   "y": 230,
+   "ang": 0,
+   "lanes": 1,
+   "text": "大手門",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    1
+   ],
+   "numPos": "",
+   "nums": {
+    "1": "A07"
+   }
+  },
+  {
+   "id": 7,
+   "kind": "st",
+   "x": 660,
+   "y": 292,
+   "ang": 90,
+   "lanes": 1,
+   "text": "城跡口",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    1
+   ],
+   "numPos": "",
+   "nums": {
+    "1": "A08"
+   }
+  },
+  {
+   "id": 8,
+   "kind": "st",
+   "x": 660,
+   "y": 394,
+   "ang": 90,
+   "lanes": 1,
+   "text": "学園通り",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    1
+   ],
+   "numPos": "",
+   "nums": {
+    "1": "A09"
+   }
+  },
+  {
+   "id": 9,
+   "kind": "st",
+   "x": 716,
+   "y": 440,
+   "ang": 0,
+   "lanes": 1,
+   "text": "大橋",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    1
+   ],
+   "numPos": "",
+   "nums": {
+    "1": "A10"
+   }
+  },
+  {
+   "id": 10,
+   "kind": "st",
+   "x": 818,
+   "y": 440,
+   "ang": 0,
+   "lanes": 1,
+   "text": "東中央",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    1
+   ],
+   "numPos": "",
+   "nums": {
+    "1": "A11"
+   }
+  },
+  {
+   "id": 11,
+   "kind": "st",
+   "x": 1022,
+   "y": 440,
+   "ang": 0,
+   "lanes": 1,
+   "text": "海岸通り",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    1
+   ],
+   "numPos": "",
+   "nums": {
+    "1": "A13"
+   }
+  },
+  {
+   "id": 12,
+   "kind": "st",
+   "x": 1124,
+   "y": 440,
+   "ang": 0,
+   "lanes": 1,
+   "text": "海浜公園",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    1
+   ],
+   "numPos": "",
+   "nums": {
+    "1": "A14"
+   }
+  },
+  {
+   "id": 13,
+   "kind": "st",
+   "x": 360,
+   "y": 80,
+   "ang": 90,
+   "lanes": 1,
+   "text": "北町",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    2
+   ],
+   "numPos": "",
+   "nums": {
+    "2": "B01"
+   }
+  },
+  {
+   "id": 14,
+   "kind": "st",
+   "x": 360,
+   "y": 386,
+   "ang": 90,
+   "lanes": 1,
+   "text": "図書館前",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    2
+   ],
+   "numPos": "",
+   "nums": {
+    "2": "B03"
+   }
+  },
+  {
+   "id": 15,
+   "kind": "st",
+   "x": 360,
+   "y": 488,
+   "ang": 90,
+   "lanes": 1,
+   "text": "市民病院前",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    2
+   ],
+   "numPos": "",
+   "nums": {
+    "2": "B04"
+   }
+  },
+  {
+   "id": 16,
+   "kind": "st",
+   "x": 360,
+   "y": 590,
+   "ang": 90,
+   "lanes": 1,
+   "text": "南大通り",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    2
+   ],
+   "numPos": "",
+   "nums": {
+    "2": "B05"
+   }
+  },
+  {
+   "id": 17,
+   "kind": "st",
+   "x": 360,
+   "y": 692,
+   "ang": 90,
+   "lanes": 1,
+   "text": "運動公園",
+   "pos": "right",
+   "vert": false,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    2
+   ],
+   "numPos": "",
+   "nums": {
+    "2": "B06"
+   }
+  },
+  {
+   "id": 18,
+   "kind": "st",
+   "x": 880,
+   "y": 542,
+   "ang": 90,
+   "lanes": 1,
+   "text": "臨港道路",
+   "pos": "left",
+   "vert": false,
+   "autoLabel": false,
+   "align": "center",
+   "lineIds": [
+    3
+   ],
+   "numPos": "",
+   "nums": {
+    "3": "C02"
+   }
+  },
+  {
+   "id": 19,
+   "kind": "st",
+   "x": 880,
+   "y": 644,
+   "ang": 90,
+   "lanes": 1,
+   "text": "工業団地前",
+   "pos": "left",
+   "vert": false,
+   "autoLabel": false,
+   "align": "center",
+   "lineIds": [
+    3
+   ],
+   "numPos": "",
+   "nums": {
+    "3": "C03"
+   }
+  },
+  {
+   "id": 20,
+   "kind": "hub",
+   "x": 360,
+   "y": 230,
+   "ang": 0,
+   "lanes": 1,
+   "text": "中央広場",
+   "pos": "right",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    1,
+    2
+   ],
+   "numPos": "",
+   "nums": {
+    "1": "A04",
+    "2": "B02"
+   },
+   "lanesX": 1,
+   "lanesY": 3,
+   "alignX": "center",
+   "alignY": "center"
+  },
+  {
+   "id": 21,
+   "kind": "hub",
+   "x": 880,
+   "y": 440,
+   "ang": 0,
+   "lanes": 1,
+   "text": "運河口",
+   "pos": "right",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "lineIds": [
+    1,
+    3
+   ],
+   "numPos": "",
+   "nums": {
+    "1": "A12",
+    "3": "C01"
+   },
+   "lanesX": 1,
+   "lanesY": 3,
+   "alignX": "center",
+   "alignY": "center"
+  }
+ ],
+ "texts": [
+  {
+   "id": 22,
+   "x": 260,
+   "y": 44,
+   "text": "路面電車サンプル（小さめフォーマット）",
+   "size": 20,
+   "color": null
+  }
+ ],
+ "table": [],
+ "seq": 26
+}

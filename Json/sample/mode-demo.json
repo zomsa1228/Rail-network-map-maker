@@ -1,0 +1,651 @@
+{
+ "v": 2,
+ "app": "2026.10.14",
+ "name": "",
+ "s": {
+  "format": "standard",
+  "numPos": "between",
+  "scale": 1,
+  "lineColor": "#808080",
+  "lineWidth": 10,
+  "laneGap": 40,
+  "stW": 25,
+  "stH": 40,
+  "stStroke": 3,
+  "stGap": 40,
+  "stInk": "#000000",
+  "stFill": "#ffffff",
+  "labelSize": 28.5,
+  "labelBox": 160,
+  "labelH": 40,
+  "labelGap": 20,
+  "labelColor": "#000000",
+  "hubW": 120,
+  "hubH": 40,
+  "hubSize": 24,
+  "hubColor": "#231815",
+  "hubText": "#ffffff",
+  "hubPad": 14,
+  "numShape": "square",
+  "grid": 5,
+  "bg": "#ffffff",
+  "transparent": false,
+  "margin": 10,
+  "canvasFixed": true,
+  "canvasW": 1920,
+  "canvasH": 1080
+ },
+ "lines": [
+  {
+   "id": 20,
+   "mode": "long",
+   "k": null,
+   "z": 10,
+   "pts": [
+    [
+     72.5,
+     100
+    ],
+    [
+     177.5,
+     100
+    ],
+    [
+     282.5,
+     100
+    ],
+    [
+     387.5,
+     100
+    ],
+    [
+     492.5,
+     100
+    ]
+   ],
+   "color": "#EB5757",
+   "width": null,
+   "r": 8,
+   "name": "新幹線（長距離）",
+   "dash": null,
+   "cross": null,
+   "numShape": ""
+  },
+  {
+   "id": 26,
+   "mode": "mid",
+   "k": null,
+   "z": 20,
+   "pts": [
+    [
+     72.5,
+     300
+    ],
+    [
+     137.5,
+     300
+    ],
+    [
+     202.5,
+     300
+    ],
+    [
+     267.5,
+     300
+    ],
+    [
+     332.5,
+     300
+    ],
+    [
+     397.5,
+     300
+    ]
+   ],
+   "color": "#2D9CDB",
+   "width": null,
+   "r": 8,
+   "name": "一般線（中距離）",
+   "dash": null,
+   "cross": null,
+   "numShape": ""
+  },
+  {
+   "id": 33,
+   "mode": "short",
+   "k": null,
+   "z": 30,
+   "pts": [
+    [
+     66.25,
+     500
+    ],
+    [
+     98.75,
+     500
+    ],
+    [
+     131.25,
+     500
+    ],
+    [
+     163.75,
+     500
+    ],
+    [
+     196.25,
+     500
+    ],
+    [
+     228.75,
+     500
+    ],
+    [
+     261.25,
+     500
+    ],
+    [
+     293.75,
+     500
+    ]
+   ],
+   "color": "#27AE60",
+   "width": null,
+   "r": 8,
+   "name": "路面電車（短距離）",
+   "dash": null,
+   "cross": null,
+   "numShape": ""
+  }
+ ],
+ "stations": [
+  {
+   "id": 21,
+   "kind": "st",
+   "x": 72.5,
+   "y": 100,
+   "ang": 0,
+   "lanes": 1,
+   "text": "東京",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {},
+   "lineIds": [
+    20
+   ]
+  },
+  {
+   "id": 22,
+   "kind": "st",
+   "x": 177.5,
+   "y": 100,
+   "ang": 0,
+   "lanes": 1,
+   "text": "名古屋",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {},
+   "lineIds": [
+    20
+   ]
+  },
+  {
+   "id": 23,
+   "kind": "st",
+   "x": 282.5,
+   "y": 100,
+   "ang": 0,
+   "lanes": 1,
+   "text": "京都",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {},
+   "lineIds": [
+    20
+   ]
+  },
+  {
+   "id": 24,
+   "kind": "st",
+   "x": 387.5,
+   "y": 100,
+   "ang": 0,
+   "lanes": 1,
+   "text": "新大阪",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {},
+   "lineIds": [
+    20
+   ]
+  },
+  {
+   "id": 25,
+   "kind": "st",
+   "x": 492.5,
+   "y": 100,
+   "ang": 0,
+   "lanes": 1,
+   "text": "岡山",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {},
+   "lineIds": [
+    20
+   ]
+  },
+  {
+   "id": 27,
+   "kind": "st",
+   "x": 72.5,
+   "y": 300,
+   "ang": 0,
+   "lanes": 1,
+   "text": "北駅",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {},
+   "lineIds": [
+    26
+   ]
+  },
+  {
+   "id": 28,
+   "kind": "st",
+   "x": 137.5,
+   "y": 300,
+   "ang": 0,
+   "lanes": 1,
+   "text": "桜台",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {},
+   "lineIds": [
+    26
+   ]
+  },
+  {
+   "id": 29,
+   "kind": "st",
+   "x": 202.5,
+   "y": 300,
+   "ang": 0,
+   "lanes": 1,
+   "text": "公園前",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {},
+   "lineIds": [
+    26
+   ]
+  },
+  {
+   "id": 30,
+   "kind": "st",
+   "x": 267.5,
+   "y": 300,
+   "ang": 0,
+   "lanes": 1,
+   "text": "市役所前",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {},
+   "lineIds": [
+    26
+   ]
+  },
+  {
+   "id": 31,
+   "kind": "st",
+   "x": 332.5,
+   "y": 300,
+   "ang": 0,
+   "lanes": 1,
+   "text": "大学前",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {},
+   "lineIds": [
+    26
+   ]
+  },
+  {
+   "id": 32,
+   "kind": "st",
+   "x": 397.5,
+   "y": 300,
+   "ang": 0,
+   "lanes": 1,
+   "text": "東口",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {},
+   "lineIds": [
+    26
+   ]
+  },
+  {
+   "id": 34,
+   "kind": "st",
+   "x": 66.25,
+   "y": 500,
+   "ang": 0,
+   "lanes": 1,
+   "text": "電停A",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {},
+   "lineIds": [
+    33
+   ]
+  },
+  {
+   "id": 35,
+   "kind": "st",
+   "x": 98.75,
+   "y": 500,
+   "ang": 0,
+   "lanes": 1,
+   "text": "電停B",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {},
+   "lineIds": [
+    33
+   ]
+  },
+  {
+   "id": 36,
+   "kind": "st",
+   "x": 131.25,
+   "y": 500,
+   "ang": 0,
+   "lanes": 1,
+   "text": "電停C",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {},
+   "lineIds": [
+    33
+   ]
+  },
+  {
+   "id": 37,
+   "kind": "st",
+   "x": 163.75,
+   "y": 500,
+   "ang": 0,
+   "lanes": 1,
+   "text": "電停D",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {},
+   "lineIds": [
+    33
+   ]
+  },
+  {
+   "id": 38,
+   "kind": "st",
+   "x": 196.25,
+   "y": 500,
+   "ang": 0,
+   "lanes": 1,
+   "text": "電停E",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {},
+   "lineIds": [
+    33
+   ]
+  },
+  {
+   "id": 39,
+   "kind": "st",
+   "x": 228.75,
+   "y": 500,
+   "ang": 0,
+   "lanes": 1,
+   "text": "電停F",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {},
+   "lineIds": [
+    33
+   ]
+  },
+  {
+   "id": 40,
+   "kind": "st",
+   "x": 261.25,
+   "y": 500,
+   "ang": 0,
+   "lanes": 1,
+   "text": "電停G",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {},
+   "lineIds": [
+    33
+   ]
+  },
+  {
+   "id": 41,
+   "kind": "st",
+   "x": 293.75,
+   "y": 500,
+   "ang": 0,
+   "lanes": 1,
+   "text": "電停H",
+   "pos": "bottom",
+   "vert": true,
+   "autoLabel": true,
+   "align": "center",
+   "nums": {},
+   "lineIds": [
+    33
+   ]
+  }
+ ],
+ "texts": [
+  {
+   "id": 42,
+   "x": 700,
+   "y": 36,
+   "text": "距離モードの例（長距離＝駅間隔2倍／中距離＝標準／短距離＝駅間隔・駅マーカー・駅名が1/2）",
+   "size": 28.5,
+   "color": null
+  }
+ ],
+ "table": [
+  {
+   "id": 1,
+   "routeNo": "1",
+   "routeName": "新幹線（長距離）",
+   "station": "東京",
+   "hub": false,
+   "mode": "long"
+  },
+  {
+   "id": 2,
+   "routeNo": "1",
+   "routeName": "新幹線（長距離）",
+   "station": "名古屋",
+   "hub": false,
+   "mode": ""
+  },
+  {
+   "id": 3,
+   "routeNo": "1",
+   "routeName": "新幹線（長距離）",
+   "station": "京都",
+   "hub": false,
+   "mode": ""
+  },
+  {
+   "id": 4,
+   "routeNo": "1",
+   "routeName": "新幹線（長距離）",
+   "station": "新大阪",
+   "hub": false,
+   "mode": ""
+  },
+  {
+   "id": 5,
+   "routeNo": "1",
+   "routeName": "新幹線（長距離）",
+   "station": "岡山",
+   "hub": false,
+   "mode": ""
+  },
+  {
+   "id": 6,
+   "routeNo": "2",
+   "routeName": "一般線（中距離）",
+   "station": "北駅",
+   "hub": false,
+   "mode": "mid"
+  },
+  {
+   "id": 7,
+   "routeNo": "2",
+   "routeName": "一般線（中距離）",
+   "station": "桜台",
+   "hub": false,
+   "mode": ""
+  },
+  {
+   "id": 8,
+   "routeNo": "2",
+   "routeName": "一般線（中距離）",
+   "station": "公園前",
+   "hub": false,
+   "mode": ""
+  },
+  {
+   "id": 9,
+   "routeNo": "2",
+   "routeName": "一般線（中距離）",
+   "station": "市役所前",
+   "hub": false,
+   "mode": ""
+  },
+  {
+   "id": 10,
+   "routeNo": "2",
+   "routeName": "一般線（中距離）",
+   "station": "大学前",
+   "hub": false,
+   "mode": ""
+  },
+  {
+   "id": 11,
+   "routeNo": "2",
+   "routeName": "一般線（中距離）",
+   "station": "東口",
+   "hub": false,
+   "mode": ""
+  },
+  {
+   "id": 12,
+   "routeNo": "3",
+   "routeName": "路面電車（短距離）",
+   "station": "電停A",
+   "hub": false,
+   "mode": "short"
+  },
+  {
+   "id": 13,
+   "routeNo": "3",
+   "routeName": "路面電車（短距離）",
+   "station": "電停B",
+   "hub": false,
+   "mode": ""
+  },
+  {
+   "id": 14,
+   "routeNo": "3",
+   "routeName": "路面電車（短距離）",
+   "station": "電停C",
+   "hub": false,
+   "mode": ""
+  },
+  {
+   "id": 15,
+   "routeNo": "3",
+   "routeName": "路面電車（短距離）",
+   "station": "電停D",
+   "hub": false,
+   "mode": ""
+  },
+  {
+   "id": 16,
+   "routeNo": "3",
+   "routeName": "路面電車（短距離）",
+   "station": "電停E",
+   "hub": false,
+   "mode": ""
+  },
+  {
+   "id": 17,
+   "routeNo": "3",
+   "routeName": "路面電車（短距離）",
+   "station": "電停F",
+   "hub": false,
+   "mode": ""
+  },
+  {
+   "id": 18,
+   "routeNo": "3",
+   "routeName": "路面電車（短距離）",
+   "station": "電停G",
+   "hub": false,
+   "mode": ""
+  },
+  {
+   "id": 19,
+   "routeNo": "3",
+   "routeName": "路面電車（短距離）",
+   "station": "電停H",
+   "hub": false,
+   "mode": ""
+  }
+ ],
+ "seq": 43
+}
